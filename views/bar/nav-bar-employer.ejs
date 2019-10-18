@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <%- include('../bar/css-init')%>
+</head>
+<body>
+<nav class="navbar navbar-light navbar-expand-sm bg-light">
+    <!-- LOGO COMPANY -->
+    <a class="navbar-brand" href="/">
+        <img src="http://localhost:3000/images/logo.png" alt="logo-project" height="70px">
+    </a>
+    <ul class="nav navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="#">Công việc đã đăng</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Danh sách ứng viên</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Gói đã mua</a>
+        </li>
+    </ul>
+
+    <!-- CHECK LOGIN BY EMPLOYER -->
+    <ul class="nav navbar-nav ml-auto">
+        <% if (input != null && input.permission.S == "Employer") { %>
+            <li class="nav-item dropdown">
+                <button class="btn btn-outline-dark" name="employer-menu">
+                    <span class="fas fa-align-justify fa-2x" />
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item btn btn-outline-light">Tài khoản</a>
+                    <a class="dropdown-item btn btn-outline-light">Quản lý hồ sơ</a>
+                    <a class="dropdown-item btn btn-outline-light" id="logout">Đăng xuất</a>
+                </div>
+            </li>
+        <% } else { %>
+            <li class="nav-item">
+                <a class="nav-link" href="/register">Đăng ký</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/login">Đăng nhập</a>
+            </li>
+        <% } %>
+    </ul>
+</nav>
+</body>
+<footer>
+    <%- include('../bar/js-init')%>
+    <script type="text/javascript" src="javascripts/bar/nav-bar-employer.js"></script>
+</footer>
+</html>

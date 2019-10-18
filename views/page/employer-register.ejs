@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.css"/>
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap-select.css">
+    <link type="text/css" rel="stylesheet" href="/stylesheets/page/employer-register.css"/>
+</head>
+<body>
+<div class="container-fluid"></div>
+<div class="container">
+    <form action="/register/employer" method="POST" autocomplete="off">
+        <h2>THAM GIA ĐỂ PHÁT TRIỂN CÔNG TY CỦA BẠN</h2>
+        <%
+            var eMess = e.email
+            var pMess = e.password
+            var conMess = e.confirm
+            var comMess = e.company
+            var proMess = e.pro
+            var cityMess = e.city
+            var telMess = e.tel
+        %>
+        <% if (flash!="") {%>
+            <p class="alert alert-warning"><%=flash%></p>
+        <%}%>
+        <div class="form-group mt-4">
+            <label for="f-email"><strong>Địa chỉ Email:</strong></label>
+            <input id="f-email" class="form-control" type="text"
+                   placeholder="VD: abc@gmail.com" autocomplete="off" name="email">
+            <%  if (eMess) { %>
+                <p class="alert alert-warning"><%=eMess.msg%></p>
+            <%}%>
+        </div>
+        <div class="form-group">
+            <label for="f-password"><strong>Mật khẩu:</strong></label>
+            <input id="f-password" class="form-control" type="password" name="password">
+            <% if (pMess) { %>
+                <p class="alert alert-warning"><%=pMess.msg%></p>
+            <%}%>
+        </div>
+        <div class="form-group">
+            <label for="f-confirm"><strong>Nhập lại mật khẩu:</strong></label>
+            <input id="f-confirm" class="form-control" type="password" name="confirm">
+            <% if (conMess) { %>
+            <p class="alert alert-warning"><%=conMess.msg%></p>
+            <%}%>
+        </div>
+        <div class="form-group">
+            <label for="f-company"><strong>Tên công ty:</strong></label>
+            <input id="f-company" class="form-control" type="text" placeholder="VD: VietNam COP" name="company">
+            <% if (comMess) { %>
+            <p class="alert alert-warning"><%=comMess.msg%></p>
+            <%}%>
+        </div>
+        <div class="form-group">
+            <label for="f-pro"><strong>Chuyên ngành:</strong></label>
+            <select id="f-pro" class="form-control selectpicker" data-size="4"
+                    data-live-search="true" data-actions-box="true"
+                    data-max-options="2" name="pro" multiple>
+                <%- include('../items/profess-item')%>>
+            </select>
+            <% if (proMess) { %>
+            <p class="alert alert-warning"><%=proMess.msg%></p>
+            <%}%>
+        </div>
+        <div class="form-group position-relative">
+            <label for="f-select"><strong>Địa chỉ:</strong></label>
+            <select id="f-select" class="form-control selectpicker"
+                    data-size="4" data-live-search="true" name="city">
+                <%- include('../items/city-item')%>>
+            </select>
+            <% if (cityMess) { %>
+            <p class="alert alert-warning"><%=cityMess.msg%></p>
+            <%}%>
+        </div>
+        <div class="form-group">
+            <label for="f-tel"><strong>Số điện thoại:</strong></label>
+            <input id="f-tel" class="form-control" type="tel" name="tel">
+            <% if (telMess) { %>
+            <p class="alert alert-warning"><%=telMess.msg%></p>
+            <%}%>
+        </div>
+
+        <div class="form-group">
+            <input class="form-control btn bg-success" type="submit" value="Đăng ký">
+        </div>
+    </form>
+</div>
+
+
+<%- include('../bar/js-init') %>
+<script type="text/javascript" src="/javascripts/page/employer-register.js"></script>
+</body>
+</html>

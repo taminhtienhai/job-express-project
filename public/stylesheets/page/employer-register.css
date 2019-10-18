@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+  margin: 0 auto; }
+
+.container-fluid {
+  background-color: aqua;
+  height: 200px;
+  position: absolute; }
+
+.container {
+  width: auto;
+  box-shadow: -10px -10px 30px 4px rgba(0, 0, 0, 0.1), 10px 10px 30px 4px rgba(45, 78, 255, 0.15);
+  background-color: linen;
+  position: absolute;
+  margin-left: 250px;
+  margin-top: 50px;
+  margin-bottom: 50px; }
+
+form {
+  padding: 20px 20px; }
+
+/*# sourceMappingURL=employer-register.css.map */
