@@ -1,0 +1,22 @@
+<html lang="vi">
+<head>
+    <title>Đăng nhập thành công</title>
+    <%- include('../bar/css-init')%>
+</head>
+<body>
+    <div class="jumbotron text-center d-block">
+        <% if (input.permission.S == "Seeker") {%>
+            <h3>Chào mừng bạn đã đăng nhập vào hệ thống</h3>
+            <h5>Tìm nhiều việc làm hơn mỗi ngày</h5>
+            <a class="btn btn-success" href="/">Về trang chủ</a>
+        <% } else { %>
+                <h3>Chào mừng bạn đã đăng nhập vào hệ thống</h3>
+                <h5>Cùng tìm kiếm thành viên cho công ty bạn</h5>
+                <a class="btn btn-success" href="/employer">Về trang chủ</a>
+        <% } %>
+    </div>
+</body>
+<footer>
+    <%- include('../bar/js-init')%>
+</footer>
+</html>

@@ -8,8 +8,12 @@ module.exports = function (passport) {
         res.render('page/login')
     })
 
+    router.get('/success',auth.ensureAuthenticated,(req, res) => {
+        res.render('page/login-success',{ input: req.user})
+    })
+
     router.post('/',passport.authenticate('local-login',{
-        successRedirect : '/profile',
+        successRedirect : '/login/success',
         failureRedirect : '/login',
         failureFlash : true
     }))

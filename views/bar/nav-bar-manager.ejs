@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <%- include('../bar/css-init')%>
+</head>
+<body>
+<nav class="navbar navbar-light navbar-expand-sm bg-light">
+    <!-- LOGO COMPANY -->
+    <a class="navbar-brand" href="/employer/manager">
+        <img src="/images/logo.png" alt="logo-project" height="70px">
+    </a>
+    <ul class="nav navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <span class="fa fa-file"></span>
+                Công việc đã đăng
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <span class="fa fa-users"></span>
+                Danh sách ứng viên
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <span class="fa fa-shopping-cart"></span>
+                Gói đã mua
+            </a>
+        </li>
+    </ul>
+    <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item mt-1">
+            <a type="button" class="btn btn-outline-dark" href="/employer/manager/new-job">
+                <span class="fa fa-plus fa-1x"></span>
+                Đăng tuyển dụng
+            </a>
+        </li>
+        <li class="nav-item mt-1">
+            <a type="button" class="btn btn-outline-dark" href="/employer/manager/search">
+                <span class="fa fa-search fa-1x"></span>
+                Tìm ứng viên
+            </a>
+        </li>
+        <li class="nav-item">
+            <button class="btn btn-outline-dark" name="employer-menu">
+                <span class="fas fa-align-justify fa-2x" />
+            </button>
+        </li>
+    </ul>
+</nav>
+</body>
+<footer>
+    <%- include('../bar/js-init')%>
+</footer>
+</html>

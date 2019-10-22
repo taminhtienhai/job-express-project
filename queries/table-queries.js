@@ -19,8 +19,8 @@ module.exports = {
                 console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2))
             } else {
                 console.log("Added item:", data)
-                callback(err, data)
             }
+            callback(err, data)
         })
     },
     addOneItem: function(param,callback) {
@@ -29,17 +29,18 @@ module.exports = {
                 console.log("Unable to add One Item",err, err.stack)
             } else {
                 console.log("Added One item:", data)
-                callback(err, data)
             }
+            callback(err, data)
         })
     },
-    updateItem: function (param) {
+    updateItem: function (param,callback) {
         client.update(param, (err, data) => {
             if (err) {
                 console.error("Unable to update item. Error JSON:", JSON.stringify(err, null, 2))
             } else {
                 console.log('Create succeeded:'+data)
             }
+            callback(err, data)
         })
     },
     deleteItem: function (param) {
@@ -57,9 +58,8 @@ module.exports = {
                 console.error("Unable to query. Error:", JSON.stringify(err, null, 2))
             else{
                 console.log("Query Item success ",data.Items)
-                console.log(data.Items.length)
-                callback(err,data)
             }
+            callback(err,data)
         })
     },
     scanItem: function (param,callback) {
@@ -68,8 +68,8 @@ module.exports = {
                 console.error("Unable to scan. Error:", JSON.stringify(err, null, 2));
             else{
                 console.log("Scan Item success ",data.Items)
-                callback(data)
             }
+            callback(err,data)
         })
     },
     getItem: function (param,callback) {
@@ -77,9 +77,9 @@ module.exports = {
             if (err)
                 console.log("Unable to get One Item",err, err.stack)
             else {
-                console.log("Get Item Success",data.Item)
-                callback(err, data)
+                console.log("Get Item Success")
             }
+            callback(err, data)
         })
     }
 }

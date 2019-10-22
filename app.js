@@ -7,12 +7,13 @@ const sassMiddleware = require('node-sass-middleware')
 const flash = require('connect-flash')
 const passport = require('passport')
 const session = require('express-session')
+const DynamoDBStore = require('connect-dynamodb')({session: session})
 
 const homeRouter = require('./routes/home')
 const loginRouter = require('./routes/login')(passport)
-const profileRouter = require('./routes/profile')
 const registerRouter = require('./routes/register')(passport)
 const employerRouter = require('./routes/employer')
+const managerRouter = require('./routes/manager')
 
 const app = express()
 
@@ -25,20 +26,35 @@ app.set('view engine', 'ejs')
 
 app.use(logger('dev'))
 app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({extended: false}))
 app.use(cookieParser())
 app.use(sassMiddleware({
-  src: path.join(__dirname, 'public'),
-  dest: path.join(__dirname, 'public'),
-  indentedSyntax: false, // true = .sass and false = .scss
-  sourceMap: true
+    src: path.join(__dirname, 'public'),
+    dest: path.join(__dirname, 'public'),
+    indentedSyntax: false, // true = .sass and false = .scss
+    sourceMap: true
 }))
+
+var options = {
+    table: 'SessionsTable',
+    AWSConfigJSON: {
+        accessKeyId: 'foo',
+        secretAccessKey: 'bar',
+        region: 'us-east-1'
+    },
+// Optional client for alternate endpoint, such as DynamoDB Local
+    client: require('./queries/dynamodb').dynamo(),
+
+    // Optional ProvisionedThroughput params, defaults to 5
+    readCapacityUnits: 10,
+    writeCapacityUnits: 10
+}
 
 // Init passport and flash
 app.use(session({
-  secret: "HaiTa",
-  saveUninitialized: true,
-  resave: true
+    secret: "HaiTa",
+    saveUninitialized: true,
+    resave: true
 }))
 app.use(passport.initialize())
 app.use(passport.session())
@@ -54,24 +70,24 @@ app.use(express.static(path.join(__dirname, 'node_modules/@fortawesome/fontaweso
 
 app.use('/', homeRouter)
 app.use('/login', loginRouter)
-app.use('/profile', profileRouter)
-app.use('/register',registerRouter)
-app.use('/employer',employerRouter)
+app.use('/register', registerRouter)
+app.use('/employer', employerRouter)
+app.use('/employer/manager',managerRouter)
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404))
+app.use(function (req, res, next) {
+    next(createError(404))
 })
 
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message
-  res.locals.error = req.app.get('env') === 'development' ? err : {}
+app.use(function (err, req, res, next) {
+    // set locals, only providing error in development
+    res.locals.message = err.message
+    res.locals.error = req.app.get('env') === 'development' ? err : {}
 
-  // render the error page
-  res.status(err.status || 500)
-  res.render('error')
+    // render the error page
+    res.status(err.status || 500)
+    res.render('error')
 })
 
 module.exports = app

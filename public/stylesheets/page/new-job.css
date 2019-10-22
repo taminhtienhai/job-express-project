@@ -1,0 +1,39 @@
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box; }
+
+body {
+  background-color: #F3F3F4;
+  font-family: "open sans","Helvetica Neue",Helvetica,Arial,sans-serif; }
+
+#first-form {
+  margin-top: 20px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 50px;
+  border-radius: 5px;
+  border: 1px solid #E5E6E7;
+  background-color: white; }
+
+label {
+  font-weight: bold;
+  font-size: 15px;
+  color: #343434; }
+
+.form-group {
+  display: flex;
+  justify-content: center; }
+
+[name='more-benefit'] {
+  text-decoration: underline;
+  color: #00B7FF; }
+  [name='more-benefit']:hover {
+    color: coral; }
+  [name='more-benefit']:active {
+    color: red; }
+
+small {
+  float: left; }
+
+/*# sourceMappingURL=new-job.css.map */

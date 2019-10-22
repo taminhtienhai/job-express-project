@@ -14,8 +14,8 @@ query.addItem(params)*/
 let params = {
     TableName: 'Account',
     Item: {
-        user: 'andrew@gmail.com',
-        password: '123456'
+        user: 'martin12@gmail.com',
+        name: 'Martins'
     }
 }
 
