@@ -1,12 +1,11 @@
 <!doctype html>
 <html lang="vi">
 <head>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/page/new-job.css">
 </head>
 <body>
 <%- include('../bar/nav-bar-manager') %>
-<link type="text/css" rel="stylesheet" href="/stylesheets/page/new-job.css">
 <div class="container" id="first-form">
-
     <form method="post" autocomplete="off" action="/employer/manager/new-job/post-job" id="job-form">
         <p class="d-flex justify-content-lg-start">
             <span class="fa fa-briefcase"/>
@@ -180,7 +179,6 @@
         <div class="form-group form-row text-right">
             <label class="col-sm-3">Logo</label>
             <div class="col-sm-9">
-                <%=input.logo.S%>
                 <input type="file" class="float-left" name="logo">
                 <% if (error.logo) {%>
                 <small class="text-danger"><%=error.logo.msg%></small>

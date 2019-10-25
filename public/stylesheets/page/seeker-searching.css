@@ -1,0 +1,20 @@
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box; }
+
+[name='seeker-list'] {
+  height: 500px;
+  overflow: auto; }
+
+[name='seeker-info'] {
+  height: 500px; }
+
+.primary-info, .cv-file {
+  margin-top: 10px;
+  overflow: hidden; }
+
+#main-content {
+  margin-bottom: 50px; }
+
+/*# sourceMappingURL=seeker-searching.css.map */

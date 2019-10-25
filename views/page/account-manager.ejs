@@ -1,0 +1,111 @@
+<html lang="vi">
+<head>
+    <title>Quản lý tài khoản</title>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/page/account-manager.css" >
+</head>
+<body>
+<%- include('../bar/nav-bar-manager') %>
+<div class="container bg-white mt-2" name="account-info">
+    <h3>
+        <span class="fa fa-envelope"></span>
+        <span>Thông Tin Tài Khoản</span>
+    </h3>
+    <section class="container ml-2">
+        <div class="row">
+            <label class="col-md-3"><strong>Địa Chỉ Email:</strong></label>
+            <div class="col-md">
+                <p name="user"><%=input.user.S%></p>
+                <button type="button" class="btn btn-outline-dark">Đổi mật khẩu</button>
+            </div>
+        </div>
+    </section>
+</div>
+<div class="container bg-white mt-2" name="company-info" data-aos="fade-right">
+    <h3>
+        <span class="fa fa-building"></span>
+        <span>Thông Tin Công Ty</span>
+    </h3>
+    <section class="container ml-2">
+        <form autocomplete="off">
+            <div class="form-group form-row">
+                <label class="col-md-3"><strong>Tên Công Ty:</strong></label>
+                <% if (input.company_name.S==null) {%>
+                    <input type="text" class="form-control col-md" name="company_name">
+                <% } else {%>
+                    <input type="text" class="form-control-plaintext col-md" name="company_name">
+                <% } %>
+            </div>
+            <div class="form-group form-row">
+                <label class="col-md-3">
+                    <strong>Địa Chỉ Công Ty:</strong>
+                </label>
+                <% if (input.address.S==null) {%>
+                    <input type="text" class="form-control col-md" name="address">
+                <% } else {%>
+                    <input type="text" class="form-control-plaintext col-md" name="address">
+                <% } %>
+            </div>
+            <div class="form-group form-row">
+                <label class="col-md-3">
+                    <strong>Ngành Nghề:</strong>
+                </label>
+                <select class="form-control selectpicker col-md" data-size="4"
+                        data-live-search="true" data-actions-box="true"
+                        data-max-options="3" name="pro" multiple>
+                    <%- include('../items/profess-item') %>
+                </select>
+            </div>
+            <div class="form-group form-row">
+                <label class="col-md-3">
+                    <strong>Người liên hệ:</strong>
+                </label>
+                <% if (input.contact_name.S==null) {%>
+                    <input type="text" class="form-control col-md" name="contact" placeholder="Ví dụ: Nguyễn Văn A">
+                <% } else {%>
+                    <input type="text" class="form-control-plaintext col-md" name="contact" placeholder="Ví dụ: Nguyễn Văn A">
+                <% } %>
+            </div>
+            <div class="form-group form-row">
+                <label class="col-md-3">
+                    <strong>Số điện thoại:</strong>
+                </label>
+                <% if (input.phone.S==null) {%>
+                    <input type="text" class="form-control col-md" name="phone" placeholder="Ví dụ: 091...">
+                <% } else {%>
+                    <input type="text" class="form-control-plaintext col-md" name="phone" placeholder="Ví dụ: 091...">
+                <% } %>
+            </div>
+            <div class="form-group form-row">
+                <label class="col-md-3">
+                    <strong>Sơ lược về công ty:</strong>
+                </label>
+                <textarea class="form-control col-md" rows="5"></textarea>
+            </div>
+            <div class="form-group form-row">
+                <label class="col-md-3">
+                    <strong>Phúc Lợi:</strong>
+                </label>
+                <input type="text" class="form-control col-md" name="benefit">
+            </div>
+        </form>
+    </section>
+</div>
+<div class="container bg-white mt-2" name="logo" data-aos="fade-left">
+    <h3>
+        <span class="far fa-building"></span>
+        <span>Thông Tin Tài Khoản</span>
+    </h3>
+    <section class="container ml-2">
+        <div class="row">
+            <label class="col-md-3"></label>
+            <img id="img" class="col-md-auto" alt="your image" width="100" height="100"/>
+            <input type="file" class="col-md-auto"
+                   onchange="document.getElementById('img').src = window.URL.createObjectURL(this.files[0])">
+        </div>
+    </section>
+</div>
+</body>
+<footer>
+    <script type="text/javascript" src="/javascripts/page/account-manager.js"></script>
+</footer>
+</html>

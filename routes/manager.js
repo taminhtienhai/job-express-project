@@ -23,8 +23,62 @@ router.get('/new-job',auth.ensureAuthenticated,(req, res) => {
     })
 })
 
-router.get('/search',(req, res) => {
-    res.render('page/seeker-searching')
+router.get('/new-job-data',auth.ensureAuthenticated,(req, res) => {
+    let params= {
+        TableName: 'Employer',
+        Key: {
+            'user': req.user.user
+        }
+    }
+    query.getItem(params,(err,data)=>{
+        if (err)
+            res.send('Failed')
+        else
+            res.send(data.Item)
+    })
+})
+
+router.get('/search',auth.ensureAuthenticated,(req, res) => {
+    let params = {
+        TableName: 'JobSeeker',
+        KeyConditionExpression: "#user=:user",
+        ExpressionAttributeNames: {
+            '#user': 'user'
+        },
+        ExpressionAttributeValues: {
+            ':user': req.user.user.S
+        }
+    }
+
+    query.queryItem(params,(err, data)=>{
+        if (err)
+            res.render('page/seeker-searching',{error: err})
+        else
+            res.render('page/seeker-searching',{ error:{}, input: data.Items })
+    })
+})
+
+router.get('/jobs',(req, res) => {
+    let params = {
+        TableName: 'JobInfo',
+        KeyConditionExpression: "#user=:user",
+        ExpressionAttributeNames: {
+            '#user': 'user'
+        },
+        ExpressionAttributeValues: {
+            ':user': req.user.user.S
+        }
+    }
+    query.queryItem(params,(err,data)=>{
+        if (err)
+            res.render('page/job-manager',{ error: err })
+        else
+            res.render('page/job-manager',{ input: data.Items,error: {} })
+    })
+})
+
+router.get('/seeker',(req, res) => {
+    res.render('page/seeker-manager')
 })
 
 router.post('/new-job/post-job',[

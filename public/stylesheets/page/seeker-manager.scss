@@ -1,0 +1,18 @@
+body {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+.nav-pills > li {
+  text-align: center;
+  background-color: white;
+  & > a.active {
+    color: black !important;
+    background-color: white !important;
+    border-bottom: 2px solid coral;
+  }
+  & > a {
+    color: black !important;
+  }
+}

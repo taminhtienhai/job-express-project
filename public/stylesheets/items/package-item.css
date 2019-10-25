@@ -1,0 +1,29 @@
+body {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box; }
+
+.card {
+  margin-top: 10px;
+  margin-bottom: 30px; }
+
+.bg-gray {
+  background-color: #FAFAFA; }
+
+.row:not(:first-child) {
+  border: 1px solid #F3F3F3; }
+
+.row > *:not(:first-child) {
+  padding-top: 5%; }
+
+.row > *:first-child {
+  margin-top: 1%; }
+
+ul[name='basic'] > li:before {
+  content: "\f058";
+  font-family: "Font Awesome 5 Free";
+  display: inline-block;
+  margin-left: -1.3em;
+  width: 1.3em; }
+
+/*# sourceMappingURL=package-item.css.map */

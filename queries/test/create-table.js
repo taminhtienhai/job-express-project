@@ -65,7 +65,7 @@ dynamo.updateTimeToLive(pa,(err, data) => {
         console.log(err)
 })*/
 let params = {
-    TableName: 'JobInfo',
+    TableName: 'JobSeeker',
     AttributeDefinitions: [
         {AttributeName: 'user', AttributeType: 'S'}
     ],

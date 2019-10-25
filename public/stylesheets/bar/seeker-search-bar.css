@@ -1,0 +1,16 @@
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box; }
+
+#search-bar {
+  background-color: #00B7FF;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: 70px; }
+  #search-bar #bar {
+    position: relative;
+    transform: translateY(-50%);
+    top: 50%; }
+
+/*# sourceMappingURL=seeker-search-bar.css.map */

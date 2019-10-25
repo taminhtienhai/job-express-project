@@ -1,0 +1,16 @@
+body {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box; }
+
+.nav-pills > li {
+  text-align: center;
+  background-color: white; }
+  .nav-pills > li > a.active {
+    color: black !important;
+    background-color: white !important;
+    border-bottom: 2px solid coral; }
+  .nav-pills > li > a {
+    color: black !important; }
+
+/*# sourceMappingURL=seeker-manager.css.map */

@@ -1,0 +1,20 @@
+* {
+  margin: 0 auto; }
+
+body {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  position: relative;
+  background-color: #F3F3F4; }
+
+.login-form {
+  margin-top: 10%;
+  max-width: 500px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 5px;
+  border: 2px solid #E5E6E7;
+  background-color: white; }
+
+/*# sourceMappingURL=login.css.map */

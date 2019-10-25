@@ -1,0 +1,30 @@
+<html lang="vi">
+<head>
+    <title>Quản lý việc làm</title>
+</head>
+<body>
+<%- include('../bar/nav-bar-manager') %>
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Chức danh</th>
+            <th scope="col">Ngày đăng</th>
+            <th scope="col">Số lần xem</th>
+            <th scope="col">Hồ sơ ứng tuyển</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% input.forEach(function (it) { %>
+        <tr>
+            <th scope="row"><%=it.position%></th>
+            <td><%=it.date%></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <% }) %>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
