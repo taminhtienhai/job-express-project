@@ -64,6 +64,19 @@ dynamo.updateTimeToLive(pa,(err, data) => {
     if (err)
         console.log(err)
 })*/
+/*let params = {
+    TableName: 'JobSeeker',
+    AttributeDefinitions: [
+        {AttributeName: 'user', AttributeType: 'S'}
+    ],
+    KeySchema: [
+        {AttributeName: 'user', KeyType: 'HASH'}
+    ],
+    ProvisionedThroughput: {
+        ReadCapacityUnits: 10,
+        WriteCapacityUnits: 10
+    }
+}*/
 let params = {
     TableName: 'JobSeeker',
     AttributeDefinitions: [
