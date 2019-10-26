@@ -1,0 +1,72 @@
+<html lang="vi">
+<head>
+    <title>Đăng ký</title>
+    <%- include('../bar/css-init')%>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/page/seeker-register.css">
+</head>
+<body>
+<div class="container-fluid position-relative"></div>
+<div class="container">
+    <form action="/register/seeker" method="POST" autocomplete="off" class="my-2">
+        <h2 class="text-center">ĐĂNG KÝ THÀNH VIÊN</h2>
+        <p class="text-center">Tìm kiếm công việc mớ ước của bạn</p>
+        <!-- INPUT FIRST AND LAST NAME -->
+        <div class="row">
+            <%
+            var firstE = e.first_name
+            var lastE = e.last_name
+            var emailE = e.email
+            var passE = e.password
+            var conE = e.confirm
+            %>
+            <% if (flash!="") {%>
+                <p class="alert alert-warning text-center"><%=flash%></p>
+            <%}%>
+            <div class="form-group col-md">
+                <label>Họ:</label>
+                <input type="text" class="form-control" name="first_name">
+                <%  if (firstE) { %>
+                <small class="text-danger"><%=firstE.msg%></small>
+                <%}%>
+            </div>
+            <div class="form-group col-md">
+                <label>Tên:</label>
+                <input type="text" class="form-control" name="last_name">
+                <%  if (lastE) { %>
+                <small class="text-danger"><%=lastE.msg%></small>
+                <%}%>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Email:</label>
+            <input type="text" class="form-control" name="email">
+            <%  if (emailE) { %>
+            <small class="text-danger"><%=emailE.msg%></small>
+            <%}%>
+        </div>
+        <div class="form-group">
+            <label>Mật khẩu:</label>
+            <input type="password" class="form-control" name="password">
+            <small class="text-muted">Từ 6 đến 18 ký tự</small>
+            <%  if (passE) { %>
+            <small class="text-danger"><%=passE.msg%></small>
+            <%}%>
+        </div>
+        <div class="form-group">
+            <label>Xác nhận mật khẩu:</label>
+            <input type="password" class="form-control" name="confirm">
+            <%  if (conE) { %>
+            <small class="text-danger"><%=conE.msg%></small>
+            <%}%>
+        </div>
+        <p class="text-center">Nếu bạn có <strong>nhu cầu tuyển dụng</strong>, đăng ký tại <a class="font-weight-bold" href="/register/employer">đây</a></p>
+        <input type="submit" class="btn btn-success form-control mt-2">
+    </form>
+</div>
+</body>
+<footer>
+    <%- include('../bar/js-init')%>
+    <script type="text/javascript" rel="script" src="/javascripts/seeker-register"></script>
+</footer>
+</html>

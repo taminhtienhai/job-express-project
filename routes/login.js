@@ -4,7 +4,7 @@ const auth = require('../config/auth')
 
 
 module.exports = function (passport) {
-    router.get('/',auth.forwardAuthenticated,(req, res) => {
+    router.get('/',(req, res) => {
         res.render('page/login')
     })
 

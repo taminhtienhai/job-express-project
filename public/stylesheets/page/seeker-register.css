@@ -13,16 +13,16 @@ body {
   position: absolute; }
 
 .container {
-  width: 60%;
+  max-width: 60%;
   box-shadow: -10px -10px 30px 4px rgba(0, 0, 0, 0.1), 10px 10px 30px 4px rgba(45, 78, 255, 0.15);
   background-color: linen;
   position: absolute;
-  border-radius: 1%;
-  transform: translateY(8%);
   left: 20%;
-  margin-bottom: 30px; }
+  transform: translateY(-15%);
+  margin-bottom: 30px;
+  border-radius: 1%; }
 
 form {
   padding: 20px 20px; }
 
-/*# sourceMappingURL=employer-register.css.map */
+/*# sourceMappingURL=seeker-register.css.map */

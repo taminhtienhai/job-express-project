@@ -12,6 +12,10 @@ module.exports = function (passport) {
         res.render('page/employer-register',{flash: req.flash('signupMess'),e: {}})
     })
 
+    router.get('/seeker',(req, res) => {
+        res.render('page/seeker-register',{flash: req.flash('seekerSignup'),e: {}})
+    })
+
     router.post('/employer',[
         body('email').not().isEmpty().withMessage('Bạn chưa nhập dữ liệu')
             .isEmail().withMessage('Email bạn đã nhập không hợp lệ'),
@@ -41,9 +45,32 @@ module.exports = function (passport) {
         failureFlash : true
     }))
 
-    router.get('/seeker',(req, res) => {
-        res.render('page/seeker-register')
-    })
+    router.post('/seeker',[
+        body('first_name').not().isEmpty().withMessage('Bạn chưa nhập họ')
+            .isString().withMessage('Vui lòng chỉ nhập chữ'),
+        body('last_name').not().isEmpty().withMessage('Bạn chưa nhập tên')
+            .isString().withMessage('Vui lòng chỉ nhập chữ'),
+        body('email').not().isEmpty().withMessage('Bạn chưa nhập email')
+            .isEmail().withMessage("Email của bạn không hợp lệ VD: abc@gmail.com"),
+        body('password').not().isEmpty().withMessage('Bạn chưa nhập mật khẩu')
+            .matches('[a-zA-Z0-9]{6,18}').withMessage('Mật khẩu phải chứa từ 6 đến 12 ký tự'),
+        body('confirm').not().isEmpty().withMessage('Bạn chưa nhập dữ liệu')
+            .custom((value, { req }) => {
+                if (value !== req.body.password) {
+                    throw new Error('Mật khẩu nhập lại không khớp')
+                }
+                return true
+            })
+    ],(req, res, next) => {
+        let result = validationResult(req)
+        let errors = result.mapped() // get json errors
+        // CONDITION FOR NEXT ACTION
+        JSON.stringify(errors)=='{}'?next() : res.render('page/seeker-register',{flash: req.flash('seekerSignup'),e: errors})
+    },passport.authenticate('local-signup-seeker',{
+        successRedirect : '/',
+        failureRedirect : '/register/seeker',
+        failureFlash : true
+    }))
 
     return router
 }

@@ -5,15 +5,15 @@ const bcrypt = require('bcrypt')
 
 module.exports = function (passport) {
     passport.serializeUser( (user,done) => {
-        done(null,user.user)
+        return done(null,user.user)
     })
 
     passport.deserializeUser((user,done) => {
         query.getItem({TableName: "Account", Key: { user: user }}, (err, data) => {
             if (err) {
-                done(err, false);
+                return done(err, false);
             }
-            done(err, data.Item);
+            return done(err, data.Item);
         })
     })
 
@@ -60,7 +60,7 @@ module.exports = function (passport) {
                     'user': {S: username}
                 }
             }
-           async function callback(err,data){
+            async function callback(err,data){
                 if (err)
                     return done(err,false)
                 if (data.Item!=null)
@@ -95,6 +95,58 @@ module.exports = function (passport) {
                         return done(null,false)
                 }
                 await query.addOneItem(paramEmployer,callbackEm)
+                query.addOneItem(paramAccount,callbackAc)
+            }
+            query.getItem(params,callback)
+        }
+    ))
+    passport.use('local-signup-seeker', new LocalStrategy(
+        {
+            usernameField : 'email',
+            passwordField : 'password',
+            passReqToCallback : true
+        },
+        (req,username,password,done) => {
+            let input = matchedData(req)
+            let params= {
+                TableName: 'Account',
+                Key: {
+                    'user': {S: username}
+                }
+            }
+            async function callback(err,data){
+                if (err)
+                    return done(err,false)
+                if (data.Item!=null)
+                    return done(null,false,req.flash('seekerSignup','Tên đăng nhập đã tồn tại'))
+                let paramSeeker = {
+                    TableName: 'JobSeeker',
+                    Item: {
+                        'user': {S: username},
+                        'first_name': {S: input.first_name},
+                        'last_name': {S: input.last_name}
+                    }
+                }
+                let paramAccount = {
+                    TableName: 'Account',
+                    Item: {
+                        'user': {S: username},
+                        'password': {S: bcrypt.hashSync(password,10)},
+                        'permission': {S: 'Seeker'},
+                        'date': {S: String(new Date())}
+                    }
+                }
+                function callbackAc(error,data){
+                    if (error)
+                        return done(null,false)
+                    else
+                        return done(null,paramAccount.Item)
+                }
+                function callbackSeeker(error,data){
+                    if (error)
+                        return done(null,false)
+                }
+                await query.addOneItem(paramSeeker,callbackSeeker)
                 query.addOneItem(paramAccount,callbackAc)
             }
             query.getItem(params,callback)
