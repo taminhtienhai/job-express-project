@@ -78,12 +78,14 @@ dynamo.updateTimeToLive(pa,(err, data) => {
     }
 }*/
 let params = {
-    TableName: 'JobSeeker',
+    TableName: 'JobInfo',
     AttributeDefinitions: [
-        {AttributeName: 'user', AttributeType: 'S'}
+        {AttributeName: 'user', AttributeType: 'S'},
+        {AttributeName: 'position', AttributeType: 'S'}
     ],
     KeySchema: [
-        {AttributeName: 'user', KeyType: 'HASH'}
+        {AttributeName: 'user', KeyType: 'HASH'},
+        {AttributeName: 'position', KeyType: 'RANGE'}
     ],
     ProvisionedThroughput: {
         ReadCapacityUnits: 10,

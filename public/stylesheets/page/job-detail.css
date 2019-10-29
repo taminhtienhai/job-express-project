@@ -1,0 +1,36 @@
+.container-fluid {
+  height: 150px; }
+
+.container {
+  background-color: white;
+  margin-bottom: 20px; }
+  .container[name='apply_panel'] {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 1%; }
+
+.card[name='title_card'] {
+  border: none; }
+
+.card[name='right_card'] {
+  border: 1px solid #7BDBF8;
+  background-color: #F7FDFF; }
+
+.card[name='right_card'] span {
+  -webkit-text-stroke: 1.3px white;
+  transform: translateY(60%);
+  font-size: 1.7em; }
+
+.card[name='right_card'] p {
+  margin: 2px 7px; }
+
+button[name='apply'] {
+  display: flex;
+  align-content: center;
+  transform: translateY(80%);
+  background-color: coral;
+  border: none; }
+  button[name='apply']:hover {
+    background-color: chocolate; }
+
+/*# sourceMappingURL=job-detail.css.map */

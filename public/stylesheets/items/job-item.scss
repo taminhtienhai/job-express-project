@@ -1,0 +1,24 @@
+%card-title-margin {
+  margin: 10px 0px 0px 10px !important;
+}
+%card-text-margin {
+  margin: 0px 0px 0px 10px !important;
+}
+
+.card-body {
+  padding:0px !important;
+  width: 100%;
+  top: 60%;
+  & .card-text {
+    @extend %card-text-margin
+  }
+  & .card-title {
+    @extend %card-title-margin
+  }
+  & .row {
+    margin-top: 15px;
+  }
+  & .row .card-text:not(:last-child) {
+    border-right: 1px solid #D1D3D4;
+  }
+}

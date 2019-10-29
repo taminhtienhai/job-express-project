@@ -1,0 +1,12 @@
+.card {
+  border: none;
+  border-radius: 3%;
+  background-color: white;
+  & .card-footer {
+    border: none;
+    background-color: white;
+  }
+  &:focus {
+    background-color: #7BDBF8;
+  }
+}

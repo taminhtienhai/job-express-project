@@ -38,7 +38,7 @@ module.exports = {
             if (err) {
                 console.error("Unable to update item. Error JSON:", JSON.stringify(err, null, 2))
             } else {
-                console.log('Create succeeded:'+data)
+                console.log('Update succeeded:'+data)
             }
             callback(err, data)
         })
@@ -67,7 +67,7 @@ module.exports = {
             if(err)
                 console.error("Unable to scan. Error:", JSON.stringify(err, null, 2));
             else{
-                console.log("Scan Item success ",data.Items)
+                console.log("Scan Item success ")
             }
             callback(err,data)
         })

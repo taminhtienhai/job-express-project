@@ -1,0 +1,11 @@
+.card {
+  border: none;
+  border-radius: 3%;
+  background-color: white; }
+  .card .card-footer {
+    border: none;
+    background-color: white; }
+  .card:focus {
+    background-color: #7BDBF8; }
+
+/*# sourceMappingURL=seeker-item.css.map */

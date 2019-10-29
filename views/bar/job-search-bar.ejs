@@ -1,29 +1,34 @@
-<div class="container d-inline-flex justify-content-center ">
-    <nav class="navbar navbar-expand-xl">
-        <ul class="nav navbar-nav row">
-            <li class="nav-item col-5" >
-                <div class="input-group">
-                    <input type="search" class="form-control" />
-                    <div class="input-group-append">
-                        <button type="button" class="btn btn-outline-secondary">
-                            <span class="fas fa-search" />
-                        </button>
-                    </div>
+<html lang="vi">
+<head>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/bar/seeker-search-bar.css" >
+</head>
+<body>
+<div class="container" id="search-bar">
+    <div class="row" id="bar">
+        <div class="col-md-5">
+            <div class="input-group">
+                <input type="search" class="form-control">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-dark">
+                        <span class="fas fa-search"></span>
+                    </button>
                 </div>
-            </li>
-            <li class="nav-item col-3">
-                <select class="form-control">
-                    <option>Chọn ngành nghề</option>
-                </select>
-            </li>
-            <li class="nav-item col-3">
-                <select class="form-control">
-                    <option>Chọn thành phố</option>
-                </select>
-            </li>
-            <li class="nav-item col-1">
-                <input type="submit" class="btn btn-success" value="Tìm kiếm">
-            </li>
-        </ul>
-    </nav>
+            </div>
+        </div>
+        <div class="col-md-auto">
+            <select class="selectpicker" data-size="4" data-live-search="true" data-container="body">
+                <%- include('../items/profess-item') %>>
+            </select>
+        </div>
+        <div class="col-md-auto">
+            <select class="selectpicker" data-size="4" data-live-search="true" data-container="body">
+                <%- include('../items/city-item') %>>
+            </select>
+        </div>
+        <div class="col-md-auto">
+            <button type="button" class="btn btn-outline-success" >Tìm kiếm</button>
+        </div>
+    </div>
 </div>
+</body>
+</html>

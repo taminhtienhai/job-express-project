@@ -2,6 +2,7 @@
 <html>
 <head>
     <%- include('../bar/css-init')%>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/bar/nav-bar-seeker.css" >
 </head>
 <body>
 <nav class="navbar navbar-light navbar-expand-lg bg-light">
@@ -11,25 +12,25 @@
     </a>
     <ul class="nav navbar-nav mr-auto">
         <li class="nav-item">
-            <a class="nav-link" href="/alljob">Tất cả công việc</a>
+            <a class="nav-link" href="/all-job">Tất cả công việc</a>
         </li>
-        <li class="nav-item">
+        <!--<li class="nav-item">
             <a class="nav-link" href="#">Công ty</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">Liên hệ</a>
-        </li>
+        </li>-->
     </ul>
 
     <!-- CHECK LOGIN BY SEEKER -->
     <ul class="nav navbar-nav ml-auto">
-        <% if (input != null && input.permission.S == "Seeker") { %>
+        <% if (auth && auth.permission.S == "Seeker") { %>
             <li class="nav-item dropdown">
                 <button class="btn btn-outline-dark" name="seeker-menu">
                     <span class="fas fa-align-justify fa-2x" />
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item btn btn-outline-light">Tài khoản</a>
+                    <a class="dropdown-item btn btn-outline-light" href="/account">Tài khoản</a>
                     <a class="dropdown-item btn btn-outline-light">Quản lý hồ sơ</a>
                     <a class="dropdown-item btn btn-outline-light">Thông báo việc làm</a>
                     <a class="dropdown-item btn btn-outline-light" id="logout">Đăng xuất</a>

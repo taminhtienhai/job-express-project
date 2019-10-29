@@ -31,7 +31,7 @@ module.exports = function (passport) {
                 if (err) {
                     return done(err)
                 }
-                if (data.Item.length == 0) {
+                if (!data.Item) {
                     return done(null, false, req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
                 }
                 if (bcrypt.compareSync(password, data.Item.password.S)){
@@ -63,14 +63,14 @@ module.exports = function (passport) {
             async function callback(err,data){
                 if (err)
                     return done(err,false)
-                if (data.Item!=null)
+                if (data.Item)
                     return done(null,false,req.flash('signupMess','Tên đăng nhập đã tồn tại'))
                 let paramEmployer = {
                     TableName: 'Employer',
                     Item: {
                         'user': {S: username},
                         'company_name': {S: input.company},
-                        'job_profess': {S: input.pro},
+                        'job_profess': {SS: input.pro},
                         'address': {S: input.city},
                         'phone': {S: input.tel},
                     }
@@ -117,7 +117,7 @@ module.exports = function (passport) {
             async function callback(err,data){
                 if (err)
                     return done(err,false)
-                if (data.Item!=null)
+                if (data.Item)
                     return done(null,false,req.flash('seekerSignup','Tên đăng nhập đã tồn tại'))
                 let paramSeeker = {
                     TableName: 'JobSeeker',

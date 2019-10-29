@@ -23,34 +23,12 @@ router.get('/new-job',auth.ensureAuthenticated,(req, res) => {
     })
 })
 
-router.get('/new-job-data',auth.ensureAuthenticated,(req, res) => {
-    let params= {
-        TableName: 'Employer',
-        Key: {
-            'user': req.user.user
-        }
-    }
-    query.getItem(params,(err,data)=>{
-        if (err)
-            res.send('Failed')
-        else
-            res.send(data.Item)
-    })
-})
-
 router.get('/search',auth.ensureAuthenticated,(req, res) => {
     let params = {
-        TableName: 'JobSeeker',
-        KeyConditionExpression: "#user=:user",
-        ExpressionAttributeNames: {
-            '#user': 'user'
-        },
-        ExpressionAttributeValues: {
-            ':user': req.user.user.S
-        }
+        TableName: 'JobSeeker'
     }
 
-    query.queryItem(params,(err, data)=>{
+    query.scanItem(params,(err, data)=>{
         if (err)
             res.render('page/seeker-searching',{error: err})
         else
@@ -77,8 +55,38 @@ router.get('/jobs',(req, res) => {
     })
 })
 
+// GET LIST APPLICANTS
 router.get('/seeker',(req, res) => {
     res.render('page/seeker-manager')
+    /*let params = {
+        TableName: 'JobInfo',
+        Key: {
+            'user': req.user.user
+        }
+    }
+
+    query.getItem(params,(err,data)=>{
+        if (err)
+            res.render('page/seeker-manager',{ input:{}, err: err })
+        else{
+            let listSeeker = []
+            data.Item.applicants.L.forEach(async function (it,index) {
+                let param = {
+                    TableName: 'JobSeeker',
+                    Key: {
+                        'user': it.M.applicant.S
+                    }
+                }
+
+                await query.getItem(param,(err,dt)=>{
+                    if (!err)
+                        listSeeker.push(dt.Item)
+                })
+                if (data.Item.applicants.L.length-1 == index)
+                    res.render('page/seeker-manager',{ input: listSeeker, err: {} })
+            })
+        }
+    })*/
 })
 
 router.post('/new-job/post-job',[
@@ -97,8 +105,9 @@ router.post('/new-job/post-job',[
         }),
     body('description'),
     body('require').not().isEmpty().withMessage('Bạn chưa nhập yêu cầu công việc'),
-    body('tag'),
-    body('lang'),
+    body('tag').not().isEmpty().withMessage('Bạn chưa chọn thẻ')
+        .isArray({min: 2}).withMessage('Bạn phải chọn ít nhất 2 thẻ'),
+    body('lang').not().isEmpty().withMessage('Bạn chưa chọn ngôn ngữ nộp hồ sơ'),
     body('contact').not().isEmpty().withMessage('Bạn chưa nhập tên liên hệ của bạn'),
     body('email').not().isEmpty().withMessage('Bạn chưa nhập email liên lạc')
         .isEmail().withMessage('Email của bạn không đúng định dạng abc@gmail.com'),
@@ -111,7 +120,7 @@ router.post('/new-job/post-job',[
     let result = validationResult(req)
     let errors = result.mapped()
     console.log(errors)
-    JSON.stringify(errors)=='{}'?next():res.render('page/new-job',{error:errors})
+    JSON.stringify(errors)=='{}'?next():res.render('page/new-job',{error:errors, input: {}})
 },async (req, res) => {
     // GET DATA FROM USER LOGIN
     const loginData = req.user
@@ -130,13 +139,15 @@ router.post('/new-job/post-job',[
             'job_profess': { S: input.pro },
             'edu_level': { S: input.rank },
             'workplace': { S: input.workplace },
+            'language': { S: input.lang },
             'salary': { M: {
                     'min_salary': { S: input.minSalary },
                     'max_salary': { S: input.maxSalary }
                 } },
             'description': { S: input.description },
             'requirement': { S: input.require },
-            'tag': { S: input.tag }
+            'tag': { SS: input.tag },
+            'date': { S: String(new Date()) }
         }
     }
 
@@ -146,38 +157,43 @@ router.post('/new-job/post-job',[
             user: loginData.user.S
         },
         UpdateExpression: "set #name=:name, #pro=:pro, #address=:address," +
-            "#contact_name=:contact_name, #contact_email=:contact_email, #benefits=:benefits,#logo=:logo",
+            "#contact_name=:contact_name, #contact_email=:contact_email,#benefit=:benefit,#logo=:logo",
         ExpressionAttributeNames: {
             '#name': 'company_name',
             '#pro': 'job_profess',
             '#address': 'address',
+            '#benefit': 'benefits',
             '#contact_name': 'contact_name',
             '#contact_email': 'contact_email',
-            '#benefits': 'benefits',
             '#logo': 'logo'
         },
         ExpressionAttributeValues: {
             ':name': input.name ,
             ':pro': input.pro,
             ':address': input.address,
+            ':benefit': input.benefit,
             ':contact_name': input.contact,
             ':contact_email': input.email,
-            ':benefits': input.benefit,
             ':logo': input.logo
         },
         ReturnValue: "UPDATED_NEW"
     }
+
     // HANDLE ERROR AFTER UPDATE EMPLOYER
     function callbackEm(err,data) {
         if (err)
-            return res.render('page/new-job',{error:{ database: 'Không thể thêm dữ liệu vào bảng' }})
+            res.redirect('/employer/manager/new-job')
     }
     // HANDLER ACTION AFTER ADD A JOB INTO JOB-INFO
     function callbackJob(err,data) {
         if (err)
-            return res.render('page/new-job',{error:{ database: 'Không thể thêm dữ liệu vào bảng' }})
+            res.redirect('/employer/manager/new-job')
         else
             res.redirect('/employer/manager')
+    }
+    function updateCompany(err,data) {
+
+
     }
     await query.updateItem(paramEm,callbackEm)
     query.addOneItem(paramJob,callbackJob)

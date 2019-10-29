@@ -1,6 +1,6 @@
 const query = require('../table-queries')
 
-let paramEm = {
+/*let paramEm = {
     TableName: 'Employer',
     Key: {
         user: 'johnwick@gmail.com'
@@ -26,6 +26,22 @@ let paramEm = {
         ':logo': 'logo.jpg'
     },
     ReturnValue: "UPDATED_NEW"
+}*/
+
+let params = {
+    TableName: 'JobInfo',
+    Key: {
+        user: "johnwick@gmail.com",
+        position: "OverSea Manager"
+    },
+    UpdateExpression: "set #apply=:apply",
+    ExpressionAttributeNames: {
+        '#apply': 'applicants'
+    },
+    ExpressionAttributeValues: {
+        ':apply': []
+    },
+    ReturnValue: 'UPDATED_NEW'
 }
 
-query.updateItem(paramEm,()=>{})
+query.updateItem(params,()=>{})

@@ -10,6 +10,9 @@
     <form action="/register/seeker" method="POST" autocomplete="off" class="my-2">
         <h2 class="text-center">ĐĂNG KÝ THÀNH VIÊN</h2>
         <p class="text-center">Tìm kiếm công việc mớ ước của bạn</p>
+        <% if (flash!="") {%>
+        <p class="alert alert-warning text-center"><%=flash%></p>
+        <%}%>
         <!-- INPUT FIRST AND LAST NAME -->
         <div class="row">
             <%
@@ -19,9 +22,6 @@
             var passE = e.password
             var conE = e.confirm
             %>
-            <% if (flash!="") {%>
-                <p class="alert alert-warning text-center"><%=flash%></p>
-            <%}%>
             <div class="form-group col-md">
                 <label>Họ:</label>
                 <input type="text" class="form-control" name="first_name">

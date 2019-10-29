@@ -1,0 +1,38 @@
+<% input.forEach(function(it) { %>
+<div class="card my-1">
+    <div class="row no-gutters">
+        <div class="col-md-2">
+            <img src="/images/no-img.jpg" class="card-img">
+        </div>
+        <div class="col-md-8 w-100">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <a href="/job-details?user=<%=it.user%>&job=<%=it.position%>" target="_blank">
+                        <%=it.position?it.position:"no data"%>
+                    </a>
+                </h5>
+                <p class="card-text" name="company_name">
+                    <small><%=it.company_name?it.company_name:'No data'%></small>
+                </p>
+                <div class="row">
+                    <small class="card-text col-md-auto text-muted" name="salary">
+                        Lương:
+                        <span class="text-coral font-weight-bold"><%=it.salary.min_salary?it.salary.min_salary:"no data"%></span> -
+                        <span class="text-coral font-weight-bold"><%=it.salary.max_salary?it.salary.max_salary:"no data"%></span>
+                    </small>
+                    <small class="card-text col-md-auto" name="region">
+                        Khu vực:
+                        <strong><%=it.workplace?it.workplace:"no data"%></strong>
+                    </small>
+                    <small class="card-text col-md-auto" name="post_time">
+                        Đã đăng:
+                        <strong><%=it.date!=0?it.date+' ngày':'Hôm nay'%></strong>
+                    </small>
+                </div>
+                <div class="d-inline">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% }) %>

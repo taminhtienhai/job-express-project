@@ -8,11 +8,18 @@
     AOS.init()
 </script>
 <script>
+    $('select').selectpicker()
+    $(".selectpicker").selectpicker('refresh')
+</script>
+<script>
     // DROPDOWN MENU
     let content = $(".dropdown-menu").html()
 
     $("button[name='employer-menu']").popover(
-        {html: true,content: ()=>{return content}, container: 'body',trigger: 'focus', placement: 'bottom'}
+        {html: true,content: content, container: 'body',trigger: 'focus', placement: 'bottom'}
+    )
+    $("button[name='seeker-menu']").popover(
+        {html: true,content: content, container: 'body',trigger: 'focus', placement: 'bottom'}
     )
 </script>
 <script type="text/javascript">

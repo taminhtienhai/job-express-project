@@ -10,6 +10,7 @@ module.exports = function (passport) {
 
     router.get('/success',auth.ensureAuthenticated,(req, res) => {
         res.render('page/login-success',{ input: req.user})
+        console.log(req.user)
     })
 
     router.post('/',passport.authenticate('local-login',{

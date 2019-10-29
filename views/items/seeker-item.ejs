@@ -1,21 +1,23 @@
-<div class="card my-3">
-    <div class="row no-gutters">
-        <div class="col-md-4">
-            <img src="/images/no-img.jpg" class="card-img">
-        </div>
-        <div class="col-md-8">
-            <div class="card-body">
-                <h5 class="card-title"></h5>
-                <p class="card-text" name="pro"></p>
-                <p class="card-text text-muted" name="company"></p>
+<% input.forEach(function(it){ %>
+    <div class="card my-3" tabindex="-1">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="/images/no-img.jpg" class="card-img">
+                <span class="d-none" name="user"><%=it.user%></span>
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <p class="card-text" name="name"><%=it.first_name%> <%=it.last_name%></p>
+                    <p class="card-text" name="pro"></p>
+                    <p class="card-text text-muted" name="company_worked"></p>
+                    <div class="row">
+                        <p class="card-text col-sm" name="exp"></p>
+                        <p class="card-text col-sm" name="salary_desire"></p>
+                        <p class="card-text col-sm" name="cost"></p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="card-footer">
-        <div class="row">
-            <p class="card-text col-sm" name="exp"></p>
-            <p class="card-text col-sm" name="salary"></p>
-            <p class="card-text col-sm" name="cost"></p>
-        </div>
-    </div>
-</div>
+<% }) %>
+

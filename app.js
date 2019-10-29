@@ -69,6 +69,8 @@ app.use(express.static(path.join(__dirname, 'node_modules/popper.js/dist')))
 app.use(express.static(path.join(__dirname, 'node_modules/smooth-scrollbar/dist')))
 app.use(express.static(path.join(__dirname, 'node_modules/animate.css')))
 app.use(express.static(path.join(__dirname, 'node_modules/aos/dist')))
+app.use(express.static(path.join(__dirname, 'node_modules/bootstrap4-tagsinput')))
+app.use(express.static(path.join(__dirname, 'node_modules/typeahead')))
 app.use(express.static(path.join(__dirname, 'node_modules/@fortawesome/fontawesome-free')))
 
 app.use('/', homeRouter)

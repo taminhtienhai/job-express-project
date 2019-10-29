@@ -15,43 +15,43 @@
             <label for="pos" class="col-sm-3">Chức Danh</label>
             <div class="col-sm-9">
                 <input id="pos" type="text" class="form-control" placeholder="Employee Manager..." name="pos">
-                <% if (error.pos) {%>
-                <small class="text-danger"><%=error.pos.msg%></small>
+                <% if (error.pos) { %>
+                <small class="text-danger"><%= error.pos.msg %></small>
                 <% } %>
             </div>
         </div>
         <div class="form-group form-row text-right">
             <label for="rank" class="col-sm-3">Cấp Bậc</label>
             <div class="col-sm-9">
-                <select id="rank" class="form-control selectpicker" name="rank">
-                    <%- include('../items/rank-item')%>
+                <select id="rank" class="form-control " name="rank">
+                    <%- include('../items/rank-item') %>
                 </select>
-                <% if (error.rank) {%>
-                <small class="text-danger"><%=error.rank.msg%></small>
+                <% if (error.rank) { %>
+                <small class="text-danger"><%= error.rank.msg %></small>
                 <% } %>
             </div>
         </div>
         <div class="form-group form-row text-right">
             <label for="pro" class="col-sm-3">Ngành Nghề</label>
             <div class="col-sm-9">
-                <select id="pro" class="form-control selectpicker"
+                <select id="pro" class="form-control "
                         data-live-search="true" data-size="4" name="pro">
-                    <%- include('../items/profess-item')%>
+                    <%- include('../items/profess-item') %>
                 </select>
-                <% if (error.pro) {%>
-                <small class="text-danger"><%=error.pro.msg%></small>
+                <% if (error.pro) { %>
+                <small class="text-danger"><%= error.pro.msg %></small>
                 <% } %>
             </div>
         </div>
         <div class="form-group form-row text-right">
             <label for="workplace" class="col-sm-3">Nơi Làm Việc</label>
             <div class="col-sm-9">
-                <select id="workplace" class="form-control selectpicker"
+                <select id="workplace" class="form-control "
                         data-size="4" data-live-search="true" name="workplace">
-                    <%- include('../items/city-item')%>
+                    <%- include('../items/city-item') %>
                 </select>
-                <% if (error.workplace) {%>
-                <small class="text-danger"><%=error.workplace.msg%></small>
+                <% if (error.workplace) { %>
+                <small class="text-danger"><%= error.workplace.msg %></small>
                 <% } %>
             </div>
         </div>
@@ -59,14 +59,14 @@
             <label class="col-sm-3">Mức Lương</label>
             <div class="col-sm">
                 <input type="number" class="form-control" placeholder="Nhập mức lương tối thiểu" name="minSalary">
-                <% if (error.minSalary) {%>
-                <small class="text-danger"><%=error.minSalary.msg%></small>
+                <% if (error.minSalary) { %>
+                <small class="text-danger"><%= error.minSalary.msg %></small>
                 <% } %>
             </div>
             <div class="col-sm">
                 <input type="number" class="form-control" placeholder="Nhập mức lương tối đa" name="maxSalary">
-                <% if (error.maxSalary) {%>
-                <small class="text-danger"><%=error.maxSalary.msg%></small>
+                <% if (error.maxSalary) { %>
+                <small class="text-danger"><%= error.maxSalary.msg %></small>
                 <% } %>
             </div>
         </div>
@@ -74,8 +74,8 @@
             <label class="col-sm-3">Mô Tả</label>
             <div class="col-sm-9">
                 <textarea class="form-control" name="description" rows="5"></textarea>
-                <% if (error.description) {%>
-                <small class="text-danger"><%=error.description.msg%></small>
+                <% if (error.description) { %>
+                <small class="text-danger"><%= error.description.msg %></small>
                 <% } %>
             </div>
         </div>
@@ -83,29 +83,32 @@
             <label class="col-sm-3">Yêu Cầu Công Việc</label>
             <div class="col-sm-9">
                 <textarea class="form-control" name="require" rows="5"></textarea>
-                <% if (error.require) {%>
-                <small class="text-danger"><%=error.require.msg%></small>
+                <% if (error.require) { %>
+                <small class="text-danger"><%= error.require.msg %></small>
                 <% } %>
             </div>
         </div>
         <div class="form-group form-row text-right">
             <label class="col-sm-3">Thẻ Từ Khóa</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" placeholder="Employee Manager..." name="tag">
-                <% if (error.tag) {%>
-                <small class="text-danger"><%=error.tag.msg%></small>
+                <select class="form-control"
+                        data-live-search="true" data-action="true" data-size="4" name="tag" multiple>
+                    <%- include('../items/lang-item') %>
+                </select>
+                <% if (error.tag) { %>
+                <small class="text-danger"><%= error.tag.msg %></small>
                 <% } %>
             </div>
         </div>
         <div class="form-group form-row text-right">
             <label class="col-sm-3">Nhận Hồ Sơ Bằng Ngôn Ngữ</label>
             <div class="col-sm-9">
-                <select class="form-control selectpicker"
+                <select class="form-control"
                         data-live-search="true" data-size="4" name="lang">
-                    <%- include('../items/lang-item')%>
+                    <%- include('../items/lang-item') %>
                 </select>
-                <% if (error.lang) {%>
-                <small class="text-danger"><%=error.lang.msg%></small>
+                <% if (error.lang) { %>
+                <small class="text-danger"><%= error.lang.msg %></small>
                 <% } %>
             </div>
         </div>
@@ -113,8 +116,8 @@
             <label class="col-sm-3">Người Liên Hệ</label>
             <div class="col-sm-9">
                 <input type="text" class="form-control" name="contact">
-                <% if (error.contact) {%>
-                <small class="text-danger"><%=error.contact.msg%></small>
+                <% if (error.contact) { %>
+                <small class="text-danger"><%= error.contact.msg %></small>
                 <% } %>
             </div>
         </div>
@@ -122,8 +125,8 @@
             <label class="col-sm-3">Địa Chỉ Email Nhận Hồ Sơ</label>
             <div class="col-sm-9">
                 <input type="text" class="form-control " name="email">
-                <% if (error.email) {%>
-                <small class="text-danger"><%=error.email.msg%></small>
+                <% if (error.email) { %>
+                <small class="text-danger"><%= error.email.msg %></small>
                 <% } %>
             </div>
         </div>
@@ -135,25 +138,25 @@
                 CÔNG TY
             </p>
             <a class="ml-auto">
-                <span class="fa fa-check" />
+                <span class="fa fa-check"/>
                 Hoàn Tất
             </a>
         </div>
         <div class="form-group form-row text-right">
             <label class="col-sm-3">Tên Công Ty</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" name="name">
-                <% if (error.name) {%>
-                <small class="text-danger"><%=error.name.msg%></small>
+                <input type="text" class="form-control" name="name" value=<%=input.company_name?input.company_name.S:""%> >
+                <% if (error.name) { %>
+                <small class="text-danger"><%= error.name.msg %></small>
                 <% } %>
             </div>
         </div>
         <div class="form-group form-row text-right">
             <label class="col-sm-3">Địa Chỉ Công Ty</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" name="address" >
-                <% if (error.address) {%>
-                <small class="text-danger"><%=error.address.msg%></small>
+                <input type="text" class="form-control" name="address" value=<%=input.address?input.address.S:""%>>
+                <% if (error.address) { %>
+                <small class="text-danger"><%= error.address.msg %></small>
                 <% } %>
             </div>
         </div>
@@ -161,17 +164,17 @@
             <label class="col-sm-3">Thông Tin Công Ty</label>
             <div class="col-sm-9">
                 <textarea class="form-control" name="info" rows="5"></textarea>
-                <% if (error.info) {%>
-                <small class="text-danger"><%=error.info.msg%></small>
+                <% if (error.info) { %>
+                <small class="text-danger"><%= error.info.msg %></small>
                 <% } %>
             </div>
         </div>
         <div class="form-group form-row text-right">
             <label class="col-sm-3">Phúc Lợi Công Ty</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" name="benefit">
-                <% if (error.benefit) {%>
-                <small class="text-danger"><%=error.benefit.msg%></small>
+                <input type="text" class="form-control" name="benefit" value=<%=input.benefits?input.benefits.S:""%> >
+                <% if (error.benefit) { %>
+                <small class="text-danger"><%= error.benefit.msg %></small>
                 <% } %>
                 <a class="float-right" href="#" name="more-benefit">Thêm phúc lợi</a>
             </div>
@@ -180,8 +183,8 @@
             <label class="col-sm-3">Logo</label>
             <div class="col-sm-9">
                 <input type="file" class="float-left" name="logo">
-                <% if (error.logo) {%>
-                <small class="text-danger"><%=error.logo.msg%></small>
+                <% if (error.logo) { %>
+                <small class="text-danger"><%= error.logo.msg %></small>
                 <% } %>
             </div>
         </div>

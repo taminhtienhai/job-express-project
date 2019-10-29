@@ -2,9 +2,6 @@
   margin: 0 auto; }
 
 body {
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
   position: relative;
   background-color: #F3F3F4; }
 

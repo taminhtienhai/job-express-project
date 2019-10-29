@@ -2,6 +2,7 @@
 <head>
     <title>Tìm kiếm người tìm việc</title>
     <link type="text/css" rel="stylesheet" href="/stylesheets/page/seeker-searching.css" >
+    <link type="text/css" rel="stylesheet" href="/stylesheets/items/seeker-item.css" >
 </head>
 <body>
     <%- include('../bar/nav-bar-manager')%>
@@ -12,9 +13,8 @@
                 <% if (JSON.stringify(input)=='[]') {%>
                     <h5 class="text-center mt-5">No data found</h5>
                 <% } else {%>
-                <% input.forEach(function(it){ %>
                     <%- include('../items/seeker-item')%>
-                <% }) }%>
+                <% }%>
             </div>
             <div class="col-md-8" name="seeker-info">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -34,21 +34,21 @@
                         <section class="primary-info">
                             <div class="row">
                                 <label class="col-md-4">Họ và tên:</label>
-                                <p class="col-md"></p>
+                                <p class="col-md" name="full_name"></p>
                             </div>
                             <div class="row">
                                 <label class="col-md-4">Tuổi:</label>
-                                <p class="col-md"></p>
+                                <p class="col-md" name="age"></p>
                             </div>
                             <hr>
                             <h4>Sơ yếu lý lịch</h4>
                             <div class="row">
                                 <label class="col-md-4">Công việc mong muốn:</label>
-                                <p class="col-md"></p>
+                                <p class="col-md" name="primary_info"></p>
                             </div>
                             <div class="row">
                                 <label class="col-md-4">Kỹ năng cá nhân:</label>
-                                <p class="col-md"></p>
+                                <p class="col-md" name="skill"></p>
                             </div>
                             <div class="row">
                                 <label class="col-md-4">Bằng cấp hiện tại:</label>
@@ -56,17 +56,17 @@
                             </div>
                             <div class="row">
                                 <label class="col-md-4">Đã hoặc đang làm việc ở:</label>
-                                <p class="col-md"></p>
+                                <p class="col-md" name="address"></p>
                             </div>
                             <hr>
                             <h4>Thông tin liên hệ</h4>
                             <div class="row">
                                 <label class="col-md-4">Số điện thoại:</label>
-                                <p class="col-md"></p>
+                                <p class="col-md" name="phone"></p>
                             </div>
                             <div class="row">
-                                <label class="col-md-4">Emai:</label>
-                                <p class="col-md"></p>
+                                <label class="col-md-4">Email:</label>
+                                <p class="col-md" name="email"></p>
                             </div>
                         </section>
                     </div>
@@ -82,5 +82,6 @@
 </body>
 <footer>
     <script type="text/javascript" src="/javascripts/page/seeker-searching.js"></script>
+    <script type="text/javascript" src="/javascripts/items/seeker-item.js"></script>
 </footer>
 </html>

@@ -1,0 +1,137 @@
+<html>
+<head>
+    <title>Chi tiết công việc</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/page/job-detail.css">
+</head>
+<body>
+<%- include('../bar/nav-bar-seeker') %>
+<div class="container-fluid" name="company_image">
+
+</div>
+<!-- COMPANY NAME , LOGO AND APPLY JOB -->
+<div class="container" name="apply_panel">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="card" name="title_card">
+                <div class="row no-gutters">
+                    <!-- COMPANY LOGO -->
+                    <div class="col-md-2">
+                        <img src="/images/no-img.jpg" class="card-img">
+                    </div>
+                    <!-- BASIC INFO -->
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h2 class="card-title"><%= input.position?input.position.S:'No data' %></h2>
+                            <p class="card-text"><%= input.company_name?input.company_name.S:'No data' %></p>
+                            <p class="card-text">
+                                <%= input.salary.min_salary?input.salary.min_salary.S + '$ - ':'No data' %>
+                                <%= input.salary.max_salary?input.salary.max_salary.S + '$':'No data' %>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <% if(!auth) { %>
+                <a class="btn btn-success" name="apply" href="/login">
+                    <h3>Nộp Đơn</h3>
+                </a>
+            <% } else if (isApply){ %>
+            <button type="button" class="btn btn-success" name="apply">
+                <h3>Nộp Đơn</h3>
+                <span class="d-none" name="apply-user"><%= input.user.S %></span>
+                <span class="d-none" name="apply-pos"><%= input.position.S %></span>
+            </button>
+            <% } else { %>
+            <button type="button" class="btn" name="apply" disabled>
+                <h3>Đã Nộp</h3>
+                <span class="d-none" name="apply-user"><%= input.user.S %></span>
+                <span class="d-none" name="apply-pos"><%= input.position.S %></span>
+            </button>
+            <% } %>
+        </div>
+    </div>
+</div>
+<!-- JOB INFO -->
+<div class="container" name="info_panel">
+    <div class="row">
+        <!-- LEFT INFO -->
+        <div class="col-md-8 mt-5 mb-5">
+            <h3 class="lead">CÁC PHÚC LỢI DÀNH CHO BẠN</h3>
+            <p><%= input.benefits?input.benefits.S:'No data' %></p>
+            <h3 class="lead">MÔ TẢ CÔNG VIỆC</h3>
+            <p><%= input.description?input.description.S:'No data' %></p>
+            <h3 class="lead">YÊU CẦU CÔNG VIỆC</h3>
+            <p><%= input.requirement?input.requirement.S:'No data' %></p>
+            <h5 class="font-weight-bold">Từ khóa:</h5>
+            <p><%= input.tag?input.tag.S:'No data' %></p>
+        </div>
+        <!-- RIGHT INFO -->
+        <div class="col-md-4 mt-5 mb-5">
+            <div class="card" name="right_card">
+                <div class="card-body">
+                    <!-- NGÀY ĐĂNG TUYỂN -->
+                    <div class="row">
+                        <div class="col-md-1">
+                            <span class="far fa-calendar-alt fa-2x"></span>
+                        </div>
+                        <div class="col-md-auto">
+                            <p class="card-text text-muted">NGÀY ĐĂNG TUYỂN</p>
+                            <p class="card-text"><%= input.date?input.date.S:'No data' %></p>
+                        </div>
+                    </div>
+                    <hr>
+                    <!-- CẤP BẬC -->
+                    <div class="row">
+                        <div class="col-md-1">
+                            <span class="fa fa-layer-group fa-2x"></span>
+                        </div>
+                        <div class="col-md-auto">
+                            <p class="card-text text-muted">CẤP BẬC</p>
+                            <p class="card-text"><%= input.rank?input.rank.S:'No data' %></p>
+                        </div>
+                    </div>
+                    <hr>
+                    <!-- NGÀNH NGHỀ -->
+                    <div class="row">
+                        <div class="col-md-1">
+                            <span class="far fa-calendar-alt fa-2x"></span>
+                        </div>
+                        <div class="col-md-auto">
+                            <p class="card-text text-muted">NGÀNH NGHỀ</p>
+                            <p class="card-text"><%= input.job_profess?input.job_profess.S:'No data' %></p>
+                        </div>
+                    </div>
+                    <hr>
+                    <!-- KỸ NĂNG -->
+                    <div class="row">
+                        <div class="col-md-1">
+                            <span class="far fa-flag fa-2x"></span>
+                        </div>
+                        <div class="col-md-auto">
+                            <p class="card-text text-muted">KỸ NĂNG</p>
+                            <p class="card-text"><%= input.skill?input.skill.S:'No data' %></p>
+                        </div>
+                    </div>
+                    <hr>
+                    <!-- NGÔN NGỮ -->
+                    <div class="row">
+                        <div class="col-md-1">
+                            <span class="fa fa-language fa-2x"></span>
+                        </div>
+                        <div class="col-md-auto">
+                            <p class="card-text text-muted">NGÔN NGỮ TRÌNH BÀY HỒ SƠ</p>
+                            <p class="card-text"><%= input.job_profess?input.job_profess.S:'No data' %></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<footer>
+    <script type="text/javascript" src="/javascripts/page/job-detail.js"></script>
+</footer>
+</html>

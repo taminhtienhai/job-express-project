@@ -25,7 +25,16 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane fade show active" id="candidate" role="tabpanel" aria-labelledby="home-tab">
-
+            <table class="table table-responsive">
+                <tbody>
+                    <% input.forEach(function (it,index) { %>
+                        <tr>
+                            <td scope="col"><%=index%></td>
+                            <td><%=it.last_name.S%></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
         </div>
         <div class="tab-pane fade" id="potential" role="tabpanel" aria-labelledby="profile-tab">
 

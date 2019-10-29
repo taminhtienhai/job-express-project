@@ -1,0 +1,16 @@
+.card-body .card-title {
+  margin: 10px 0px 0px 10px !important; }
+
+.card-body .card-text {
+  margin: 0px 0px 0px 10px !important; }
+
+.card-body {
+  padding: 0px !important;
+  width: 100%;
+  top: 60%; }
+  .card-body .row {
+    margin-top: 15px; }
+  .card-body .row .card-text:not(:last-child) {
+    border-right: 1px solid #D1D3D4; }
+
+/*# sourceMappingURL=job-item.css.map */

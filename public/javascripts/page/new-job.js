@@ -1,14 +1,6 @@
 $(function () {
     // INIT SELECT
-    $('select').selectpicker()
-
-    $.get('/employer/manager/new-job-data').done(function (data) {
-        $("[name='name']").val(data.company_name.S)
-        $("[name='address']").val(data.address.S)
-        $("[name='benefit']").val(data.benefits.S)
-    }).fail(function(){
-        alert('fail')
-    })
+    $("select").selectpicker()
 
     $("a[name='more-benefit']").click(function () {
 

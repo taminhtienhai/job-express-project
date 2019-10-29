@@ -1,0 +1,135 @@
+<html lang="vi">
+<head>
+    <title>Quản lý tài khoản</title>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/page/account-manager.css" >
+</head>
+<body>
+<%- include('../bar/nav-bar-manager') %>
+<div class="container bg-white mt-2" name="account-info">
+    <h3>
+        <span class="fa fa-envelope"></span>
+        <span>Thông Tin Tài Khoản</span>
+    </h3>
+    <section class="container ml-2">
+        <div class="row">
+            <label class="col-md-3"><strong>Địa Chỉ Email:</strong></label>
+            <div class="col-md">
+                <p name="user"><%=input.user.S%></p>
+                <button type="button" class="btn btn-outline-dark">Đổi mật khẩu</button>
+            </div>
+        </div>
+    </section>
+</div>
+<div class="container bg-white mt-2" name="company-info" data-aos="fade-right">
+    <h3>
+        <span class="fa fa-building"></span>
+        <span>Thông Tin Công Ty</span>
+    </h3>
+    <section class="container ml-2">
+        <form autocomplete="off" action="/employer/save-account" method="post">
+            <div class="form-group form-row">
+                <label class="col-md-3"><strong>Tên Công Ty:</strong></label>
+                <div class="col-md">
+                    <% if (!input.company_name) {%>
+                        <input type="text" class="form-control" name="company_name">
+                    <% } else {%>
+                        <input type="text" class="form-control-plaintext " name="company_name">
+                    <% } %>
+                    <small class="text-danger"><%=error.company_name?error.company_name.msg:''%></small>
+                </div>
+            </div>
+            <div class="form-group form-row">
+                <label class="col-md-3">
+                    <strong>Địa Chỉ Công Ty:</strong>
+                </label>
+                <div class="col-md">
+                    <% if (!input.address) {%>
+                        <input type="text" class="form-control" name="address">
+                    <% } else {%>
+                        <input type="text" class="form-control-plaintext" name="address">
+                    <% } %>
+                    <small class="text-danger"><%=error.address?error.address.msg:''%></small>
+                </div>
+            </div>
+            <div class="form-group form-row">
+                <label class="col-md-3">
+                    <strong>Ngành Nghề:</strong>
+                </label>
+                <div class="col-md">
+                    <select class="form-control selectpicker" data-size="4"
+                            data-live-search="true" data-actions-box="true"
+                            data-max-options="3" name="pro" multiple>
+                        <%- include('../items/profess-item') %>
+                    </select>
+                    <small class="text-danger"><%=error.pro?error.pro.msg:''%></small>
+                </div>
+            </div>
+            <div class="form-group form-row">
+                <label class="col-md-3">
+                    <strong>Người liên hệ:</strong>
+                </label>
+                <div class="col-md">
+                    <% if (!input.contact_name) {%>
+                        <input type="text" class="form-control " name="contact" placeholder="Ví dụ: Nguyễn Văn A">
+                    <% } else {%>
+                        <input type="text" class="form-control-plaintext " name="contact" placeholder="Ví dụ: Nguyễn Văn A">
+                    <% } %>
+                    <small class="text-danger"><%=error.contact_name?error.contact_name.msg:''%></small>
+                </div>
+            </div>
+            <div class="form-group form-row">
+                <label class="col-md-3">
+                    <strong>Số điện thoại:</strong>
+                </label>
+                <div class="col-md">
+                    <% if (!input.phone) {%>
+                        <input type="text" class="form-control " name="phone" placeholder="Ví dụ: 091...">
+                    <% } else {%>
+                        <input type="text" class="form-control-plaintext " name="phone" placeholder="Ví dụ: 091...">
+                    <% } %>
+                    <small class="text-danger"><%=error.phone?error.phone.msg:''%></small>
+                </div>
+            </div>
+            <div class="form-group form-row">
+                <label class="col-md-3">
+                    <strong>Sơ lược về công ty:</strong>
+                </label>
+                <textarea class="form-control col-md" rows="5" name="basic_info"></textarea>
+            </div>
+            <div class="form-group form-row">
+                <label class="col-md-3">
+                    <strong>Phúc Lợi:</strong>
+                </label>
+                <div class="col-md">
+                    <% if (!input.phone) {%>
+                        <input type="text" class="form-control-plaintext " name="benefit">
+                    <% } else {%>
+                        <input type="text" class="form-control " name="benefit">
+                    <% } %>
+                    <small class="text-danger"><%=error.benefit?error.benefit.msg:''%></small>
+                </div>
+            </div>
+            <hr style="border: 1px dot-dash black">
+            <input type="submit" class="btn btn-success float-right" value="Lưu">
+        </form>
+    </section>
+</div>
+<div class="container bg-white mt-2" name="logo" data-aos="fade-left">
+    <h3>
+        <span class="far fa-building"></span>
+        <span>Thông Tin Tài Khoản</span>
+    </h3>
+    <section class="container ml-2">
+        <div class="row">
+            <label class="col-md-3"></label>
+            <img id="img" class="col-md-auto" alt="your image" width="100" height="100"/>
+            <input type="file" class="col-md-auto"
+                   onchange="document.getElementById('img').src = window.URL.createObjectURL(this.files[0])" name="logo">
+        </div>
+    </section>
+</div>
+</body>
+<footer>
+    <script type="text/javascript" src="/javascripts/page/account-manager.js"></script>
+</footer>
+</html>
