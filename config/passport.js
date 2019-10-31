@@ -1,19 +1,18 @@
 const LocalStrategy = require('passport-local')
 const query= require('../queries/table-queries')
 const { body, validationResult, matchedData } = require('express-validator')
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 
 module.exports = function (passport) {
     passport.serializeUser( (user,done) => {
-        return done(null,user.user)
+        done(null,user.user)
     })
 
     passport.deserializeUser((user,done) => {
         query.getItem({TableName: "Account", Key: { user: user }}, (err, data) => {
-            if (err) {
-                return done(err, false);
-            }
-            return done(err, data.Item);
+            if (err)
+                return done(err, false)
+            done(err, data.Item)
         })
     })
 

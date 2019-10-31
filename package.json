@@ -12,6 +12,7 @@
     "aws": "0.0.3-2",
     "aws-sdk": "^2.548.0",
     "bcrypt": "^3.0.6",
+    "bcryptjs": "^2.4.3",
     "bootstrap": "^4.3.1",
     "bootstrap-select": "^1.13.12",
     "bootstrap4-notify": "^4.0.3",
