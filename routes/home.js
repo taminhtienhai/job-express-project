@@ -87,8 +87,10 @@ router.get('/job-details', (req, res) => {
                                 return res.render('page/job-detail', {input: vl, isApply: false, auth: req.user, error: {}})
                             if (vl.applicants.L.length==0)
                                 return res.render('page/job-detail', {input: vl, isApply: true, auth: req.user, error: {}})
-                            if (it.M.applicant.S == req.user.user.S)
+                            if (it.M.applicant.S === req.user.user.S)
                                 return res.render('page/job-detail', {input: vl, isApply: false, auth: req.user, error: {}})
+                            else
+                                return res.render('page/job-detail', {input: vl, isApply: true, auth: req.user, error: {}})
                         })
                     }
 
