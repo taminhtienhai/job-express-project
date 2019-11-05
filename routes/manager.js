@@ -19,7 +19,7 @@ router.get('/',(req, res) => {
     query.queryItem(params, (err,data)=>{
         if (!err){
             let s = 0
-            data.Items.map(it=>{ s += it.applicants.length })
+            data.Items.map(it=>{ s += it.applicants?it.applicants.length:0 })
             let rs = {
                 jobCount: data.Items.length,
                 seekerCount: s
