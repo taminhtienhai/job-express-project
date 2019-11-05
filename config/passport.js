@@ -59,7 +59,7 @@ module.exports = function (passport) {
                     'user': {S: username}
                 }
             }
-            async function callback(err,data){
+            function callback(err,data){
                 if (err)
                     return done(err,false)
                 if (data.Item)
@@ -69,7 +69,7 @@ module.exports = function (passport) {
                     Item: {
                         'user': {S: username},
                         'company_name': {S: input.company},
-                        'job_profess': {SS: input.pro},
+                        'job_profess': {S: input.pro},
                         'address': {S: input.city},
                         'phone': {S: input.tel},
                     }
@@ -93,7 +93,7 @@ module.exports = function (passport) {
                     if (error)
                         return done(null,false)
                 }
-                await query.addOneItem(paramEmployer,callbackEm)
+                query.addOneItem(paramEmployer,callbackEm)
                 query.addOneItem(paramAccount,callbackAc)
             }
             query.getItem(params,callback)

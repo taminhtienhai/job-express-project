@@ -2,46 +2,51 @@
 <html lang="vi">
 <head>
     <%- include('../bar/css-init')%>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/bar/nav-bar-employer.css" >
 </head>
 <body>
 <nav class="navbar navbar-light navbar-expand-sm bg-light">
-    <!-- LOGO COMPANY -->
-    <a class="navbar-brand" href="/employer">
-        <img src="images/logo.png" alt="logo-project" height="70px">
-    </a>
-    <ul class="nav navbar-nav mr-auto">
-        <li class="nav-item">
-            <a class="nav-link" href="#">Sản phẩm & Dịch vụ</a>
-        </li>
-    </ul>
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <!-- LOGO COMPANY -->
+            <a class="navbar-brand" href="/employer">
+                <img src="images/logo.png" alt="logo-project" height="70px">
+            </a>
+        </div>
+        <ul class="nav navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Sản phẩm & Dịch vụ</a>
+            </li>
+        </ul>
 
-    <!-- CHECK LOGIN BY EMPLOYER -->
-    <ul class="nav navbar-nav ml-auto">
-        <% if (input && input.permission.S == "Employer") { %>
-            <li class="nav-item mr-5 mt-1">
-                <a class="btn btn-outline-dark" name="management" href="/employer/manager">
-                    Quản lý tuyển dụng
-                </a>
-            </li>
-            <li class="nav-item dropdown">
-                <button class="btn btn-outline-dark" name="employer-menu">
-                    <span class="fas fa-align-justify fa-2x" />
-                </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item btn btn-outline-light" href="/employer/account">Tài khoản</a>
-                    <a class="dropdown-item btn btn-outline-light" href="/employer/recruitment-package">Mua gói đăng tuyển</a>
-                    <a class="dropdown-item btn btn-outline-light" id="logout">Đăng xuất</a>
-                </div>
-            </li>
-        <% } else { %>
-            <li class="nav-item">
-                <a class="nav-link" href="/register">Đăng ký</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/login">Đăng nhập</a>
-            </li>
-        <% } %>
-    </ul>
+        <!-- CHECK LOGIN BY EMPLOYER -->
+        <ul class="nav navbar-nav ml-auto">
+            <% if (input && input.permission.S == "Employer") { %>
+                <li class="nav-item mr-5 mt-1">
+                    <a class="btn btn-outline-dark" name="management" href="/employer/manager">
+                        Quản lý tuyển dụng
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <button class="btn btn-outline-dark" name="employer-menu">
+                        <span class="fas fa-align-justify fa-2x" />
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item btn btn-outline-light" href="/employer/account">Tài khoản</a>
+                        <a class="dropdown-item btn btn-outline-light" href="/employer/recruitment-package">Mua gói đăng tuyển</a>
+                        <a class="dropdown-item btn btn-outline-light" id="logout">Đăng xuất</a>
+                    </div>
+                </li>
+            <% } else { %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/register"><span class="fa fa-user"/> Đăng ký</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login"><span class="fa fa-lock"/> Đăng nhập</a>
+                </li>
+            <% } %>
+        </ul>
+    </div>
 </nav>
 </body>
 <footer>

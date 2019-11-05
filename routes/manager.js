@@ -5,7 +5,28 @@ const query = require('../queries/table-queries')
 const auth = require('../config/auth')
 
 router.get('/',(req, res) => {
-    res.render('page/recruitment-manager')
+    let params = {
+        TableName: 'JobInfo',
+        KeyConditionExpression: "#user=:user",
+        ExpressionAttributeNames: {
+            '#user': 'user'
+        },
+        ExpressionAttributeValues: {
+            ':user': req.user.user.S
+        }
+    }
+
+    query.queryItem(params, (err,data)=>{
+        if (!err){
+            let s = 0
+            data.Items.map(it=>{ s += it.applicants.length })
+            let rs = {
+                jobCount: data.Items.length,
+                seekerCount: s
+            }
+            res.render('page/recruitment-manager',{ input: rs })
+        }
+    })
 })
 
 router.get('/new-job',auth.ensureAuthenticated,(req, res) => {
@@ -57,38 +78,118 @@ router.get('/jobs',(req, res) => {
 
 // GET LIST APPLICANTS
 router.get('/seeker',(req, res) => {
-    res.render('page/seeker-manager')
-    /*let params = {
+    let params = {
         TableName: 'JobInfo',
-        Key: {
-            'user': req.user.user
+        KeyConditionExpression: " #user=:user ",
+        ExpressionAttributeValues: {
+            ':user': req.user.user.S
+        },
+        ExpressionAttributeNames: {
+            '#user': 'user'
         }
     }
 
-    query.getItem(params,(err,data)=>{
-        if (err)
-            res.render('page/seeker-manager',{ input:{}, err: err })
-        else{
-            let listSeeker = []
-            data.Item.applicants.L.forEach(async function (it,index) {
-                let param = {
-                    TableName: 'JobSeeker',
-                    Key: {
-                        'user': it.M.applicant.S
-                    }
-                }
-
-                await query.getItem(param,(err,dt)=>{
-                    if (!err)
-                        listSeeker.push(dt.Item)
-                })
-                if (data.Item.applicants.L.length-1 == index)
-                    res.render('page/seeker-manager',{ input: listSeeker, err: {} })
-            })
+    query.queryItem(params, (err,data)=>{
+        if (err) {
+            res.render('page/seeker-manager')
+        } else {
+            res.render('page/seeker-manager', { people: data.Items[0], list: data.Items, err: {} })
         }
-    })*/
+    })
 })
 
+router.post('/seeker-for-position', (req, res) => {
+    let params = {
+        TableName: 'JobInfo',
+        KeyConditionExpression: "#user=:user and #pos=:pos",
+        ExpressionAttributeNames: {
+            '#user': 'user',
+            '#pos': 'position'
+        },
+        ExpressionAttributeValues: {
+            ':user': req.user.user.S,
+            ':pos': req.body.value
+        }
+    }
+    query.queryItem(params,(err,data)=>{
+        if (err)
+            res.send("Can't get select position")
+        else
+            res.send(data.Items[0])
+    })
+})
+
+// QUẢN LÝ NGƯỜI NỘP ĐƠN
+// LOẠI 1 NGƯỜI
+router.post('/seeker-fired',(req, res) => {
+    let params = {
+        TableName: 'JobInfo',
+        Key: {
+            'user': req.user.user.S,
+            'position': req.body.pos
+        },
+        UpdateExpression: "REMOVE applicants["+req.body.index+"]",
+        ReturnValues: "ALL_NEW"
+    }
+
+    query.updateItem(params,(err,data)=>{
+        if (!err)
+            res.send(true)
+        else
+            res.send(false)
+    })
+
+})
+
+// TĂNG BẬC CHO ỨNG VIÊN
+router.post('/seeker-up', (req, res) => {
+    let up = req.body.po==='0'?1:2
+    let params = {
+        TableName: 'JobInfo',
+        Key: {
+            'user': req.user.user.S,
+            'position': req.body.pos
+        },
+        UpdateExpression: "set applicants["+req.body.index+"].classify=:value",
+        ExpressionAttributeValues: {
+          ':value': up
+        },
+        ReturnValues: "ALL_NEW"
+    }
+
+    query.updateItem(params,(err,data)=>{
+        if (!err)
+            res.send(true)
+        else
+            res.send(false)
+    })
+})
+
+// HẠ BẬC ỨNG VIÊN
+router.post('/seeker-down', (req, res) => {
+    let down = req.body.po==='2'?1:0
+    let params = {
+        TableName: 'JobInfo',
+        Key: {
+            'user': req.user.user.S,
+            'position': req.body.pos
+        },
+        UpdateExpression: "set applicants["+req.body.index+"].classify=:value",
+        ExpressionAttributeValues: {
+            ':value': down
+        },
+        ReturnValues: "ALL_NEW"
+    }
+
+    query.updateItem(params,(err,data)=>{
+        if (!err)
+            res.send(true)
+        else
+            res.send(false)
+    })
+})
+
+// ĐĂNG 1 CÔNG VIỆC MỚI
 router.post('/new-job/post-job',[
     body('pos').not().isEmpty().withMessage('Bạn chưa nhập vị trí')
         .isString().withMessage('Dữ liệu bạn nhập phải là chữ cái'),

@@ -1,8 +1,8 @@
 {
 	"version": 3,
-	"file": "nav-bar-seeker.css",
+	"file": "nav-bar-manager.css",
 	"sources": [
-		"nav-bar-seeker.scss"
+		"nav-bar-manager.scss"
 	],
 	"names": [],
 	"mappings": "AAAA,AAAA,WAAW,GAAG,EAAE,GAAG,CAAC,EAAE,aAAa,CAAC;EAClC,UAAU,EAAE,cAAc;EAC1B,UAAU,EAAE,cAAc,GAC3B;;AAED,AAAA,OAAO,CAAC;EACN,UAAU,EAAE,gBAAgB,GAC7B"

@@ -1,0 +1,9 @@
+{
+	"version": 3,
+	"file": "recruitment-manager.css",
+	"sources": [
+		"recruitment-manager.scss"
+	],
+	"names": [],
+	"mappings": "AACA,AAAA,SAAS,CAAC;EACR,UAAU,EAAE,IAAI;EAChB,SAAS,EAAE,gBAAgB;EAC3B,YAAY,EAAE,eAAe;EAC7B,gBAAgB,EAAE,KAAK;EACvB,MAAM,EAAE,iBAAiB;EACzB,aAAa,EAAE,EAAE,GAKlB;EAXD,AAQE,SARO,CAQL,IAAI,EARR,SAAS,CAQA,GAAG,CAAC;IACT,UAAU,EAAE,IAAI,GACjB"
+}

@@ -1,0 +1,35 @@
+<html>
+<head>
+    <title>Thông báo việc làm</title>
+</head>
+<body>
+
+<%- include('../bar/nav-bar-seeker')%>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Vị trí ứng tuyển</th>
+            <th scope="col">Tên công ty</th>
+            <th scope="col">Trạng thái</th>
+            <th scope="col">Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% if (!input) { %>
+            <p class="text-center text-muted">KHÔNG CÓ DỮ LIỆU</p>
+        <% } else { %>
+            <% input.forEach(function (it,index) { %>
+                <tr>
+                    <th scope="row"><%-index+1%></th>
+                    <td><%=it.position%></td>
+                    <td><%=it.company_name%></td>
+                    <td><%-it.location[0].classify===2?"Bạn được tuyển":"Đang xem xét"%></td>
+                </tr>
+            <% }) %>
+        <% } %>
+    </tbody>
+</table>
+
+</body>
+</html>

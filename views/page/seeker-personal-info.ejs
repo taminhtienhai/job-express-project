@@ -7,12 +7,12 @@
 <div class="container">
     <h3 class="lead">TÀI KHOẢN</h3>
     <hr style="border: 3px dot-dash black">
-    <form method="post" action="/save-account" class="w-50">
+    <form method="post" action="/seeker/save-account" class="w-50">
         <div class="form-row">
             <div class="form-group col-md">
                 <label>Họ<span class="text-danger">*</span>:</label>
                 <% if (input.first_name) { %>
-                <input type="text" class="form-control-plaintext" name="first_name" value=<%=input.first_name%>>
+                <input type="text" class="form-control-plaintext" name="first_name" value="<%=input.first_name%>">
                 <% } else {%>
                 <input type="text" class="form-control" name="first_name" >
                 <% } %>
@@ -21,7 +21,7 @@
             <div class="form-group col-md">
                 <label>Tên<span class="text-danger">*</span>:</label>
                 <% if (input.last_name) { %>
-                    <input type="text" class="form-control-plaintext" name="last_name" value=<%=input.last_name%>>
+                    <input type="text" class="form-control-plaintext" name="last_name" value="<%=input.last_name%>">
                 <% } else {%>
                     <input type="text" class="form-control" name="last_name">
                 <% } %>
@@ -32,7 +32,7 @@
             <div class="form-group col-md">
                 <label>Ngày sinh:</label>
                 <% if (input.birthday) { %>
-                    <input type="date" class="form-control-plaintext" name="birthday" value=<%=input.birthday%>>
+                    <input type="date" class="form-control-plaintext" name="birthday" value="<%=input.birthday%>">
                 <% } else {%>
                     <input type="date" class="form-control" name="birthday">
                 <% } %>

@@ -6,11 +6,22 @@
 <body>
 <%- include('../bar/nav-bar-manager') %>
 <main>
+    <div class="d-inline ml-auto">
+        <label>Hiển thị theo vị trí:</label>
+        <select class="selectpicker" name="choose-pos">
+            <% if (list.length != 0) {
+            list.forEach(function (item) { %>
+                <option><%= item.position %></option>
+            <% })
+            } %>
+        </select>
+    </div>
+
     <ul class="nav nav-pills row" role="tablist">
         <li class="nav-item col-sm-4">
             <a class="nav-link active" id="candidate-tab"
                data-toggle="tab" href="#candidate" role="tab"
-               aria-controls="home" aria-selected="true">Ứng viên</a>
+               aria-controls="home" aria-selected="true">Tất cả ứng viên</a>
         </li>
         <li class="nav-item col-sm-4">
             <a class="nav-link" id="potential-tab"
@@ -23,26 +34,90 @@
                aria-controls="potential" aria-selected="false">Đã tuyển</a>
         </li>
     </ul>
+
     <div class="tab-content">
         <div class="tab-pane fade show active" id="candidate" role="tabpanel" aria-labelledby="home-tab">
-            <table class="table table-responsive">
-                <tbody>
-                    <% input.forEach(function (it,index) { %>
-                        <tr>
-                            <td scope="col"><%=index%></td>
-                            <td><%=it.last_name.S%></td>
-                        </tr>
-                    <% }) %>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Email</th>
+                </tr>
+                </thead>
+                <tbody name="pos-0">
+                <% if(people.applicants) {
+                people.applicants.forEach(function (it, index) { %>
+                    <tr>
+                        <td scope="col" name="pos"><%- parseInt(index) + 1 %></td>
+                        <% if (it.classify === 0) %>
+                        <td name="email"><%= it.applicant %></td>
+                        <td>
+                            <button type="button" class="btn btn-success" name="potential">Tiềm năng</button>
+                            <button type="button" class="btn btn-danger" name="fired">Loại</button>
+                        </td>
+                    </tr>
+                <% })
+                } %>
                 </tbody>
             </table>
         </div>
         <div class="tab-pane fade" id="potential" role="tabpanel" aria-labelledby="profile-tab">
-
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Email</th>
+                </tr>
+                </thead>
+                <tbody name="pos-1">
+                <% if(people.applicants) {
+                people.applicants.forEach(function (it, index) { %>
+                    <tr>
+                        <% if (it.classify === 1) { %>
+                            <td scope="col" name="pos"><%- parseInt(index) + 1 %></td>
+                            <td name="email"><%= it.applicant %></td>
+                            <td>
+                                <button type="button" class="btn btn-success" name="recruited">Tuyển dụng</button>
+                                <button type="button" class="btn btn-outline-dark" name="applicant">Không tiềm năng</button>
+                                <button type="button" class="btn btn-danger" name="fired">Loại</button>
+                            </td>
+                        <% } %>
+                    </tr>
+                <% })
+                } %>
+                </tbody>
+            </table>
         </div>
         <div class="tab-pane fade" id="recruited" role="tabpanel" aria-labelledby="contact-tab">
-
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Email</th>
+                </tr>
+                </thead>
+                <tbody name="pos-2">
+                <% if(people.applicants) {
+                people.applicants.forEach(function (it, index) { %>
+                    <tr>
+                        <% if (it.classify === 2) { %>
+                            <td scope="col" name="pos"><%- parseInt(index) + 1 %></td>
+                            <td name="email"><%= it.applicant %></td>
+                            <td>
+                                <button type="button" class="btn btn-warning" name="potential_down">Tiềm năng</button>
+                                <button type="button" class="btn btn-danger" name="fired">Loại</button>
+                            </td>
+                        <% } %>
+                    </tr>
+                <% })
+                } %>
+                </tbody>
+            </table>
         </div>
     </div>
 </main>
 </body>
+<footer>
+    <script type="text/javascript" src="/javascripts/page/seeker-manager.js"></script>
+</footer>
 </html>

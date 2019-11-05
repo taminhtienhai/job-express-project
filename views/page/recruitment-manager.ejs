@@ -1,31 +1,33 @@
 <!doctype html>
 <html lang="vi">
 <head>
+    <title>Quản lý tuyển dụng</title>
 </head>
 <body>
 <%- include('../bar/nav-bar-manager') %>
+<link rel="stylesheet" type="text/css" href="/stylesheets/page/recruitment-manager.css">
 <main>
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <span class="fas fa-building mr-auto"/>
-                <div class="ml-auto d-block">
+                <span class="fas fa-building fa-2x"></span>
+                <div class="float-right">
                     <p>Việc làm đã đăng</p>
-                    <h1 class="text-warning">0</h1>
+                    <h1 class="text-warning text-right"><%=input.jobCount?input.jobCount:'0'%></h1>
                 </div>
             </div>
             <div class="col-md-4">
-                <span class="fas fa-ticket mr-auto"/>
-                <div class="ml-auto d-block">
+                <span class="fas fa-users fa-2x"></span>
+                <div class="float-right ">
                     <p>Tổng số người đã ứng tuyển</p>
-                    <h1 class="text-warning">0</h1>
+                    <h1 class="text-warning text-right"><%=input.seekerCount?input.seekerCount:'0'%></h1>
                 </div>
             </div>
             <div class="col-md-4">
-                <span class="fas fa-user-circle mr-auto"/>
-                <div class="ml-auto d-block">
+                <span class="fas fa-user-circle fa-2x"></span>
+                <div class="float-right d-block ">
                     <p>Tuyển dụng thành công</p>
-                    <h1 class="text-warning">0</h1>
+                    <h1 class="text-warning text-right">0</h1>
                 </div>
             </div>
         </div>
