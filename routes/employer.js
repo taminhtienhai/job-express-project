@@ -68,7 +68,8 @@ router.post('/save-account', [
     body('address').not().isEmpty().withMessage("Bạn phải nhập địa chỉ"),
     body('pro').not().isEmpty().withMessage("Bạn phải chọn chuyên ngành"),
     body('contact').not().isEmpty().withMessage("Bạn phải nhập liên hệ"),
-    body('phone').not().isEmpty().withMessage("Bạn phải nhập số điện thoại"),
+    body('phone').not().isEmpty().withMessage("Bạn phải nhập số điện thoại")
+        .matches("[0-9]{8,12}").withMessage("Số điện thoại phải có từ 8 đến 12 số"),
     body('benefit').not().isEmpty().withMessage("Bạn phải nhập phúc lợi của công ty"),
     body('basic_info')
 ], (req, res, next) => {
@@ -112,7 +113,8 @@ router.post('/save-account', [
 
 router.post('/pass-change', [
     body('old').not().isEmpty().withMessage('Bạn chưa nhập mật khẩu cũ'),
-    body('news').not().isEmpty().withMessage('Bạn chưa nhập mật khẩu'),
+    body('news').not().isEmpty().withMessage('Bạn chưa nhập mật khẩu')
+        .isLength({min: 6, max: 18}).withMessage("Tối thiểu 6 và tối đa 18 ký tự"),
     body('confirm').not().isEmpty().withMessage('Bạn chưa nhập dữ liệu')
         .custom((value, {req}) => {
             if (value !== req.body.news)
@@ -155,6 +157,18 @@ router.post('/pass-change', [
         if (!err)
             res.send({})
     })
+})
+
+router.post("/info-seeker-apply",async (req, res) => {
+    let params = {
+        TableName: 'JobSeeker',
+        Key: {
+            'user': {S: req.body.name}
+        }
+    }
+
+    let rs = await Promise.resolve(query.getItemAsync(params))
+    res.send(rs.Item)
 })
 
 router.post('/logout', (req, res) => {

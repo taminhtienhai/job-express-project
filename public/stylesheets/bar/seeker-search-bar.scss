@@ -9,3 +9,11 @@
     top: 50%;
   }
 }
+
+#search {
+  background-color: #F68D0E;
+  border: 1px solid white;
+  &:hover {
+    background-color: #E38008;
+  }
+}

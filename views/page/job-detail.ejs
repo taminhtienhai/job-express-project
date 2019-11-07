@@ -24,8 +24,8 @@
                             <h2 class="card-title"><%= input.position?input.position.S:'No data' %></h2>
                             <p class="card-text"><%= input.company_name?input.company_name.S:'No data' %></p>
                             <p class="card-text">
-                                <%= input.salary.min_salary?input.salary.min_salary.S + '$ - ':'No data' %>
-                                <%= input.salary.max_salary?input.salary.max_salary.S + '$':'No data' %>
+                                <%= input.salary?input.salary.M.min_salary.S + '$ - ':'No data -' %>
+                                <%= input.salary?input.salary.M.max_salary.S + '$':'No data' %>
                             </p>
                         </div>
                     </div>
@@ -64,8 +64,6 @@
             <p><%= input.description?input.description.S:'No data' %></p>
             <h3 class="lead">YÊU CẦU CÔNG VIỆC</h3>
             <p><%= input.requirement?input.requirement.S:'No data' %></p>
-            <h5 class="font-weight-bold">Từ khóa:</h5>
-            <p><%= input.tag?input.tag.S:'No data' %></p>
         </div>
         <!-- RIGHT INFO -->
         <div class="col-md-4 mt-5 mb-5">
@@ -78,7 +76,8 @@
                         </div>
                         <div class="col-md-auto">
                             <p class="card-text text-muted">NGÀY ĐĂNG TUYỂN</p>
-                            <p class="card-text"><%= input.date?input.date.S:'No data' %></p>
+                            <% var time = new Date(input.date?input.date.S:'') %>
+                            <p class="card-text"><%-time.getDate()+'/'+time.getMonth()+'/'+time.getFullYear()%></p>
                         </div>
                     </div>
                     <hr>
@@ -89,7 +88,7 @@
                         </div>
                         <div class="col-md-auto">
                             <p class="card-text text-muted">CẤP BẬC</p>
-                            <p class="card-text"><%= input.rank?input.rank.S:'No data' %></p>
+                            <p class="card-text"><%= input.edu_level?input.edu_level.S:'No data' %></p>
                         </div>
                     </div>
                     <hr>

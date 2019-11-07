@@ -1,3 +1,4 @@
+
 .container-fluid {
   height: 150px;
 }
@@ -39,4 +40,13 @@ button[name='apply'] {
   &:hover {
     background-color: chocolate;
   }
+}
+button[name='avoid'] {
+  display: flex;
+  align-content: center;
+  transform: translateY(80%);
+}
+
+[name="info_panel"] .row .col-md-8 p {
+  white-space: pre-line;
 }

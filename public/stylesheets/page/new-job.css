@@ -31,4 +31,12 @@ label {
 small {
   float: left; }
 
+#first-lead, #second-lead {
+  font-size: 20px; }
+  #first-lead span, #second-lead span {
+    padding: 6px;
+    border-radius: 50%;
+    background-color: #37A2F1;
+    color: white; }
+
 /*# sourceMappingURL=new-job.css.map */

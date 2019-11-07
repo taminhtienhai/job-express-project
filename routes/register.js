@@ -20,7 +20,7 @@ module.exports = function (passport) {
         body('email').not().isEmpty().withMessage('Bạn chưa nhập dữ liệu')
             .isEmail().withMessage('Email bạn đã nhập không hợp lệ'),
         body('password').not().isEmpty().withMessage('Bạn chưa nhập dữ liệu')
-            .matches('[a-zA-Z0-9]{6,18}').withMessage('Mật khẩu phải chứa từ 6 đến 12 ký tự'),
+            .isLength({min: 6, max: 18}).withMessage('Mật khẩu phải chứa từ 6 đến 18 ký tự'),
         body('confirm').not().isEmpty().withMessage('Bạn chưa nhập dữ liệu')
             .custom((value, { req }) => {
             if (value !== req.body.password) {
@@ -28,12 +28,12 @@ module.exports = function (passport) {
             }
             return true
         }),
-        body('company').not().isEmpty().withMessage('Bạn chưa nhập dữ liệu')
+        body('company').not().isEmpty().withMessage('Bạn chưa nhập tên công ty')
             .trim().isLength({max:20}).withMessage('Bạn đã nhập quá 20 ký tự'),
-        body('pro').not().isEmpty().withMessage('Bạn chưa nhập dữ liệu'),
-        body('city').not().isEmpty().withMessage('Bạn chưa chọn dữ liệu'),
-        body('tel').not().isEmpty().withMessage('Bạn chưa nhập dữ liệu')
-            .matches('0[0-9]{8,9}').withMessage('Số điện thoại bắt đầu với số 0')
+        body('pro').not().isEmpty().withMessage('Bạn chưa chọn công việc chuyên môn'),
+        body('city').not().isEmpty().withMessage('Bạn chưa chọn thành phố'),
+        body('tel').not().isEmpty().withMessage('Bạn chưa nhập số điện thoại')
+            .matches('[0-9]{8,12}').withMessage('Số điện thoại phải từ 8 đến 12 số')
     ],(req, res, next) => {
         let result = validationResult(req)
         let errors = result.mapped() // get json errors

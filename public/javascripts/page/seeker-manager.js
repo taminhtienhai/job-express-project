@@ -1,12 +1,14 @@
 $(() => {
 
-    $('select').on('change',function () {
+    $('select').on('change', function () {
         sessionStorage.select_job = $("[name='choose-pos']").val()
         sessionStorage.select_job_id = $("[name='choose-pos']").find(":selected").index()
     })
 
-    $("[name='choose-pos']").val(sessionStorage.select_job)
-    $(".selectpicker").selectpicker('refresh')
+    if (sessionStorage.select_job) {
+        $("[name='choose-pos']").val(sessionStorage.select_job)
+        $(".selectpicker").selectpicker('refresh')
+    }
 
     $('a[data-toggle="tab"]').click(function (e) {
         e.preventDefault();
@@ -30,16 +32,16 @@ $(() => {
         $("tbody").html("")
         $.post('/employer/manager/seeker-for-position', {value: value}).done((data) => {
             if (data && data.applicants) {
-                data.applicants.forEach(function (item,index) {
+                data.applicants.forEach(function (item, index) {
                     $("tbody[name='pos-0']").append(
-                        `<tr><td scope='col' name="pos">${index+1}</td><td name="email">${item.applicant}</td><td>
+                        `<tr><td scope='col' name="pos">${index + 1}</td><td name="email">${item.applicant}</td><td>
                             <button type="button" class="btn btn-success" name="potential">Tiềm năng</button>
                             <button type="button" class="btn btn-danger" name="fired">Loại</button>
                         </td></tr>`
                     )
                     if (item.classify === 1)
                         $("tbody[name='pos-1']").append(
-                            `<tr><td scope='col' name="pos">${index+1}</td><td name="email">${item.applicant}</td><td>
+                            `<tr><td scope='col' name="pos">${index + 1}</td><td name="email">${item.applicant}</td><td>
                                 <button type="button" class="btn btn-success" name="recruited">Tuyển dụng</button>
                                 <button type="button" class="btn btn-outline-dark" name="applicant">Không tiềm năng</button>
                                 <button type="button" class="btn btn-danger" name="fired">Loại</button>
@@ -47,7 +49,7 @@ $(() => {
                         )
                     if (item.classify === 2)
                         $("tbody[name='pos-2']").append(
-                            `<tr><td scope='col' name="pos">${index+1}</td><td name="email">${item.applicant}</td><td>
+                            `<tr><td scope='col' name="pos">${index + 1}</td><td name="email">${item.applicant}</td><td>
                                 <button type="button" class="btn btn-success" name="potential">Tiềm năng</button>
                                 <button type="button" class="btn btn-danger" name="fired">Loại</button>
                             </td></tr>`
@@ -60,7 +62,7 @@ $(() => {
     })
 
     // CÁC THAO TÁC VỚI NGƯỜI ĐÃ NỘP ĐƠN
-    $(document).on('click',"button[name='fired']",function () {
+    $(document).on('click', "button[name='fired']", function () {
         let row = $(this).parent().parent()
         let email = row.find("td[name='email']").text()
         let index = row.find("td[name='pos']").text()
@@ -74,7 +76,11 @@ $(() => {
                     text: 'Loại',
                     btnClass: 'btn-danger',
                     action: function () {
-                        $.post('/employer/manager/seeker-fired', { pos: pos, index: (parseInt(index)-1), email: email }).done((data) => {
+                        $.post('/employer/manager/seeker-fired', {
+                            pos: pos,
+                            index: (parseInt(index) - 1),
+                            email: email
+                        }).done((data) => {
                             if (data)
                                 window.location.reload()
                         }).fail(() => {
@@ -90,7 +96,7 @@ $(() => {
     })
 
     // NÚT ỨNG CỬ VIÊN TIỀM NĂNG
-    $(document).on('click',"button[name='potential']",function () {
+    $(document).on('click', "button[name='potential']", function () {
         let row = $(this).parent().parent()
         let index = row.find("td[name='pos']").text()
         let pos = $("select[name='choose-pos']").val()
@@ -103,8 +109,12 @@ $(() => {
                     text: 'Tiềm năng',
                     btnClass: 'btn-success',
                     action: function () {
-                        $.post('/employer/manager/seeker-up', { pos: pos, index: (parseInt(index)-1) , po: 0 }).done(function (data) {
-                            if (data)  window.location.reload()
+                        $.post('/employer/manager/seeker-up', {
+                            pos: pos,
+                            index: (parseInt(index) - 1),
+                            po: 0
+                        }).done(function (data) {
+                            if (data) window.location.reload()
                         }).fail(function () {
                             alert('Failed')
                         })
@@ -119,7 +129,7 @@ $(() => {
     })
 
     // NÚT TUYỂN DỤNG
-    $(document).on('click',"button[name='recruited']",function () {
+    $(document).on('click', "button[name='recruited']", function () {
         let row = $(this).parent().parent()
         let email = row.find("td[name='email']").text()
         let index = row.find("td[name='pos']").text()
@@ -133,8 +143,12 @@ $(() => {
                     text: 'Tuyển dụng',
                     btnClass: 'btn-success',
                     action: function () {
-                        $.post('/employer/manager/seeker-up', { pos: pos, index: (parseInt(index)-1) , po: 1 }).done(function (data) {
-                            if (data)  window.location.reload()
+                        $.post('/employer/manager/seeker-up', {
+                            pos: pos,
+                            index: (parseInt(index) - 1),
+                            po: 1
+                        }).done(function (data) {
+                            if (data) window.location.reload()
                         }).fail(function () {
                             alert('Failed')
                         })
@@ -148,7 +162,7 @@ $(() => {
     })
 
     // NÚT LOẠI TƯ CÁCH ỨNG VIÊN TIỀM NĂNG
-    $(document).on('click',"button[name='applicant']",function () {
+    $(document).on('click', "button[name='applicant']", function () {
         let row = $(this).parent().parent()
         let index = row.find("td[name='pos']").text()
         let pos = $("select[name='choose-pos']").val()
@@ -161,7 +175,11 @@ $(() => {
                     text: 'Không tiềm năng',
                     btnClass: 'btn-success',
                     action: function () {
-                        $.post('/employer/manager/seeker-down', { pos: pos, index: (parseInt(index)-1) , po: 1 }).done(function (data) {
+                        $.post('/employer/manager/seeker-down', {
+                            pos: pos,
+                            index: (parseInt(index) - 1),
+                            po: 1
+                        }).done(function (data) {
                             if (data)
                                 row.remove()
                         }).fail(function () {
@@ -177,7 +195,7 @@ $(() => {
     })
 
     //NÚT LOẠI TƯ CÁCH NGƯỜI ĐƯỢC ỨNG TUYỂN
-    $(document).on('click',"button[name='potential_down']",function () {
+    $(document).on('click', "button[name='potential_down']", function () {
         let row = $(this).parent().parent()
         let email = row.find("td[name='email']").text()
         let index = row.find("td[name='pos']").text()
@@ -191,7 +209,11 @@ $(() => {
                     text: 'Tiềm năng',
                     btnClass: 'btn-danger',
                     action: function () {
-                        $.post('/employer/manager/seeker-down', { pos: pos, index: (parseInt(index)-1) , po: 2 }).done(function (data) {
+                        $.post('/employer/manager/seeker-down', {
+                            pos: pos,
+                            index: (parseInt(index) - 1),
+                            po: 2
+                        }).done(function (data) {
                             if (data) window.location.reload()
                         }).fail(function () {
                             alert('Failed')
@@ -205,5 +227,35 @@ $(() => {
         })
     })
 
+    // HIỂN THỊ THÔNG TIN NGƯỜI ĐÃ NỘP ĐƠN
+    $(document).on('click', "tbody tr", function () {
+        let row = $(this)
+        let name = row.find("[name='email']").text()
+        $.dialog({
+            title: 'Thông tin người nộp đơn',
+            columnClass: 'col-md-6 col-md-offset-3',
+            content: function () {
+                let self = this
+                return $.post('/employer/info-seeker-apply', {name: name}).done(function (data) {
+                    self.setContentAppend(
+                        `<div class='form-row'>` +
+                        `    <label class='col-md-2'>Tên:</label>` +
+                        `    <input class='form-control-plaintext col-md' type='text'  value="${data.first_name.S+' '+data.last_name.S}">` +
+                        `</div>`+
+                        `<div class='form-row'>` +
+                        `    <label class='col-md-2'>Giới tính:</label>` +
+                        `    <input class='form-control-plaintext col-md' type='text'  value="${data.sex?data.sex:'Male'}">` +
+                        `</div>`+
+                        `<div class='form-row'>` +
+                        `    <label class='col-md-2'>Tuổi:</label>` +
+                        `    <input class='form-control-plaintext col-md' type='text'  value="${new Date().getFullYear()-new Date(data.birthday?data.birthday:new Date()).getFullYear()}">` +
+                        `</div>`
+                    )
+                }).fail(function () {
+                    $.alert("Can't get info apply")
+                })
+            }
+        })
 
+    })
 })

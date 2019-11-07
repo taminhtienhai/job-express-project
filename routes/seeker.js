@@ -72,6 +72,7 @@ router.get('/job-notification', (req, res) => {
                                             { user: req.user.user.S },
                                             "remove company_apply["+index+"]"
                                         ),(err,data)=>{})
+                                        resolve(null)
                                     } else {
                                         let rlt = rs.map(function (value) {
                                             console.log(value)
@@ -83,7 +84,7 @@ router.get('/job-notification', (req, res) => {
                                                 company_name: result.Item.company_name.S
                                             }
                                         })
-                                        resolve(rlt)
+                                        resolve(rlt[0])
                                     }
                                 })
                         })
@@ -91,7 +92,8 @@ router.get('/job-notification', (req, res) => {
                 })
 
                 Promise.all(result).then(rs=>{
-                    res.render('page/job-notification', {input: rs[0], auth: req.user})
+                    console.log(rs)
+                    res.render('page/job-notification', {input: rs, auth: req.user})
                 })
             } else
                 res.render('page/job-notification', {input: [], auth: req.user})

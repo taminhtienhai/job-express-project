@@ -1,9 +1,10 @@
 .col-md-4 {
   margin-top: 20px;
   max-width: 350px !important;
+  max-height: 200px !important;
   margin-right: 30px !important;
   background-color: white;
-  border: 1px solid #F3F3F3;
+  border: 1px solid #EBEBEB;
   border-radius: 3%; }
   .col-md-4 span, .col-md-4 div {
     margin-top: 20px; }

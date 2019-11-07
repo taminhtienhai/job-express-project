@@ -8,4 +8,10 @@
     transform: translateY(-50%);
     top: 50%; }
 
+#search {
+  background-color: #F68D0E;
+  border: 1px solid white; }
+  #search:hover {
+    background-color: #E38008; }
+
 /*# sourceMappingURL=seeker-search-bar.css.map */

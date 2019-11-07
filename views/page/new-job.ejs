@@ -7,8 +7,8 @@
 <%- include('../bar/nav-bar-manager') %>
 <div class="container" id="first-form">
     <form method="post" autocomplete="off" action="/employer/manager/new-job/post-job" id="job-form">
-        <p class="d-flex justify-content-lg-start">
-            <span class="fa fa-briefcase"/>
+        <p class="lead" id="first-lead">
+            <span class="fa fa-briefcase"></span>
             MÔ TẢ CÔNG VIỆC
         </p>
         <div class="form-group form-row text-right">
@@ -89,18 +89,6 @@
             </div>
         </div>
         <div class="form-group form-row text-right">
-            <label class="col-sm-3">Thẻ Từ Khóa</label>
-            <div class="col-sm-9">
-                <select class="form-control"
-                        data-live-search="true" data-action="true" data-size="4" name="tag" multiple>
-                    <%- include('../items/lang-item') %>
-                </select>
-                <% if (error.tag) { %>
-                <small class="text-danger"><%= error.tag.msg %></small>
-                <% } %>
-            </div>
-        </div>
-        <div class="form-group form-row text-right">
             <label class="col-sm-3">Nhận Hồ Sơ Bằng Ngôn Ngữ</label>
             <div class="col-sm-9">
                 <select class="form-control"
@@ -131,14 +119,16 @@
             </div>
         </div>
 
+        <hr>
+
         <!-- COMPANY INFO FORM -->
         <div class="d-flex">
-            <p class="mr-auto">
-                <span class="fa fa-briefcase"/>
+            <p class="mr-auto lead" id="second-lead">
+                <span class="fa fa-briefcase"></span>
                 CÔNG TY
             </p>
             <a class="ml-auto">
-                <span class="fa fa-check"/>
+                <span class="fa fa-check"></span>
                 Hoàn Tất
             </a>
         </div>

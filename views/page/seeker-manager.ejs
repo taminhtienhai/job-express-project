@@ -49,10 +49,11 @@
                 people.applicants.forEach(function (it, index) { %>
                     <tr>
                         <td scope="col" name="pos"><%- parseInt(index) + 1 %></td>
-                        <% if (it.classify === 0) %>
                         <td name="email"><%= it.applicant %></td>
                         <td>
+                            <% if (it.classify === 0) { %>
                             <button type="button" class="btn btn-success" name="potential">Tiềm năng</button>
+                            <% } %>
                             <button type="button" class="btn btn-danger" name="fired">Loại</button>
                         </td>
                     </tr>

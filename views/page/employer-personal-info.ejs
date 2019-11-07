@@ -101,10 +101,10 @@
                     <strong>Phúc Lợi:</strong>
                 </label>
                 <div class="col-md">
-                    <% if (!input.phone) {%>
-                        <input type="text" class="form-control-plaintext " name="benefit">
-                    <% } else {%>
+                    <% if (!input.benefits) {%>
                         <input type="text" class="form-control " name="benefit">
+                    <% } else {%>
+                        <input type="text" class="form-control-plaintext " name="benefit">
                     <% } %>
                     <small class="text-danger"><%=error.benefit?error.benefit.msg:''%></small>
                 </div>

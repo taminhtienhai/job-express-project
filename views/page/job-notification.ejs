@@ -20,12 +20,14 @@
             <p class="text-center text-muted">KHÔNG CÓ DỮ LIỆU</p>
         <% } else { %>
             <% input.forEach(function (it,index) { %>
+                <% if (it) { %>
                 <tr>
                     <th scope="row"><%-index+1%></th>
                     <td><%=it.position%></td>
                     <td><%=it.company_name%></td>
                     <td><%-it.location[0].classify===2?"Bạn được tuyển":"Đang xem xét"%></td>
                 </tr>
+                <% } %>
             <% }) %>
         <% } %>
     </tbody>

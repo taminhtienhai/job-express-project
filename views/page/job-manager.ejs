@@ -17,10 +17,11 @@
         <tbody>
         <% input.forEach(function (it) { %>
         <tr>
+            <% var time = new Date(it.date?it.date:'') %>
             <th scope="row"><%=it.position%></th>
-            <td><%=it.date%></td>
+            <td><%-time.getDate()+'/'+time.getMonth()+'/'+time.getFullYear()%></td>
             <td></td>
-            <td></td>
+            <td><%=it.applicants.length%></td>
         </tr>
         <% }) %>
         </tbody>

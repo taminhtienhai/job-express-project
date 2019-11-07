@@ -3,19 +3,38 @@
 <head>
     <%- include('../bar/head-setting') %>
     <link rel="stylesheet" href="stylesheets/employer-home.css"/>
-
-    <script type="text/javascript" src="javascripts/home-role.js"></script>
 </head>
 <body>
 <%- include('../bar/nav-bar-employer') %>
 <main>
-    <div class="jumbotron text-center d-block bg-info position-relative">
+    <div class="jumbotron text-center d-block position-relative">
         <h1 class="font-weight-bold text-white">Giúp doanh nghiệp của bạn vươn xa</h1>
         <h3 class="text-white">Tìm đúng người trao đúng việc</h3>
-        <button class="btn btn-outline-light position-absolute" name="e-role">
+        <button class="btn btn-outline-light position-absolute animated bounceInRight" name="e-role">
             Bạn là người tìm việc?
         </button>
+
+        <div class="row position-absolute" id="addon">
+            <div class="col-auto text-center">
+                <h1>1</h1>
+                <h6>TRANG TUYỂN DỤNG SỐ 1 VIỆT NAM</h6>
+                <p>Giúp đẩy mạnh,quảng bá thương hiệu</p>
+            </div>
+            <div class="col-auto text-center">
+                <h1>1600</h1>
+                <h6>1600 LƯỢT XEM MỖI ĐĂNG TUYỂN</h6>
+                <p>Gia tăng cơ hội thu hút ứng viên tiềm năng</p>
+            </div>
+            <div class="col-auto text-center">
+                <h1>3700</h1>
+                <h6>3700 ỨNG VIÊN TIỀM NĂNG</h6>
+                <p>Nhanh chóng tìm được ứng viên phù hợp</p>
+            </div>
+        </div>
     </div>
 </main>
 </body>
+<footer>
+    <script type="text/javascript" src="javascripts/home-role.js"></script>
+</footer>
 </html>

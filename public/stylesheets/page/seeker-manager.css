@@ -8,4 +8,10 @@
   .nav-pills > li > a {
     color: black !important; }
 
+tbody tr {
+  transition: .5s ease; }
+  tbody tr:hover {
+    color: coral;
+    border-bottom: 1px solid #7BDBF8; }
+
 /*# sourceMappingURL=seeker-manager.css.map */

@@ -6,20 +6,37 @@
 </head>
 <body>
 <main>
-    <div class="login-form">
+    <img src="/images/background_login.jpg" alt="Background">
+    <div class="login-form animated bounceInLeft">
         <form method="post" action="/login">
             <div class="container">
+                <h3>Đăng Nhập</h3>
+                <hr>
                 <div class="form-group">
                     <label for="user">Tài khoản</label>
-                    <input id="user" class="form-control" type="text" placeholder="Nhập tên đăng nhập" name="username" required>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button class="btn bg-primary" disabled>
+                                <span class="fa fa-user"></span>
+                            </button>
+                        </div>
+                        <input id="user" class="form-control" type="text" placeholder="Nhập tên đăng nhập" name="username" required>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="pass">Mật khẩu:</label>
-                    <input id="pass" class="form-control" type="password" placeholder="Nhập mật khẩu" name="password" required>
+                    <label for="pass">Mật khẩu</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button class="btn bg-primary" disabled>
+                                <span class="fa fa-key"></span>
+                            </button>
+                        </div>
+                        <input id="pass" class="form-control" type="password" placeholder="Nhập mật khẩu" name="password" required>
+                    </div>
                 </div>
                 <!-- SUBMIT -->
-                <div class="form-group">
-                    <input class="form-control btn btn-success" type="submit" value="Đăng nhập"><br>
+                <div class="form-group d-flex justify-content-end">
+                    <input class="btn btn-success" type="submit" value="Đăng nhập"><br>
                 </div>
             </div>
         </form>

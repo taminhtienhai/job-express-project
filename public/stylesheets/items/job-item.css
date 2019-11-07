@@ -6,8 +6,7 @@
 
 .card-body {
   padding: 0px !important;
-  width: 100%;
-  top: 60%; }
+  width: 100%; }
   .card-body .row {
     margin-top: 15px; }
   .card-body .row .card-text:not(:last-child) {

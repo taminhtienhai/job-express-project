@@ -3,6 +3,17 @@
   margin-top: 0px !important; }
 
 .navbar {
+  background-color: #006C9A;
   max-height: 4.5em !important; }
+
+.nav .btn:not([name="employer-menu"]) {
+  color: white;
+  background-color: #006C9A;
+  border: white; }
+  .nav .btn:not([name="employer-menu"]):first-child {
+    margin-right: 10px; }
+
+[name="employer-menu"]:hover {
+  background-color: #006C9A; }
 
 /*# sourceMappingURL=nav-bar-manager.css.map */

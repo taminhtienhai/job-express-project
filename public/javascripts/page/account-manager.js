@@ -6,6 +6,9 @@ $(() => {
         $("[name='address']").val(data.address.S)
         $("[name='contact']").val(data.contact_name.S)
         $("[name='phone']").val(data.phone.S)
+        $("[name='pro']").val(data.job_profess.S)
+        $("[name='benefit']").val(data.benefits.S)
+        $(".selectpicker").selectpicker('refresh')
     }).fail(function () {
         alert('fail')
     })

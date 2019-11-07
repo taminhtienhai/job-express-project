@@ -8,3 +8,31 @@ button {
     color: white;
   }
 }
+
+.jumbotron {
+  height: 350px !important;
+  background: #00b4db; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #00b4db, #0083b0); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #00b4db, #0083b0);
+}
+
+#addon {
+  max-width: 80%;
+
+  bottom: -40%;
+  left: 13%;
+
+  & .col-auto h1 {
+    color: #FFA21A;
+    font-size: 100px !important;
+    text-shadow: 3px 6px #FFE9CA;
+  }
+  & .col-auto {
+    width: 300px;
+    height: 250px;
+    margin-right: 35px;
+    background-color: white;
+    border-radius: 10%;
+    box-shadow: -10px -10px 30px 4px rgba(0,0,0,0.1), 10px 10px 30px 4px rgba(45,78,255,0.15);
+  }
+}

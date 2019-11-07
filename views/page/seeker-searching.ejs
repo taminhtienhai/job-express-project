@@ -11,7 +11,7 @@
         <div class="row" >
             <div class="col-md-4" name="seeker-list" >
                 <% if (JSON.stringify(input)=='[]') {%>
-                    <h5 class="text-center mt-5">No data found</h5>
+                    <h5 class="text-center mt-5">Không có người tìm việc nào</h5>
                 <% } else {%>
                     <%- include('../items/seeker-item')%>
                 <% }%>

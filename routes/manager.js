@@ -4,7 +4,7 @@ const { body, validationResult, matchedData } = require('express-validator')
 const query = require('../queries/table-queries')
 const auth = require('../config/auth')
 
-router.get('/',(req, res) => {
+router.get('/',auth.ensureAuthenticated,(req, res) => {
     let params = {
         TableName: 'JobInfo',
         KeyConditionExpression: "#user=:user",
@@ -57,7 +57,7 @@ router.get('/search',auth.ensureAuthenticated,(req, res) => {
     })
 })
 
-router.get('/jobs',(req, res) => {
+router.get('/jobs',auth.ensureAuthenticated,(req, res) => {
     let params = {
         TableName: 'JobInfo',
         KeyConditionExpression: "#user=:user",
@@ -77,7 +77,7 @@ router.get('/jobs',(req, res) => {
 })
 
 // GET LIST APPLICANTS
-router.get('/seeker',(req, res) => {
+router.get('/seeker',auth.ensureAuthenticated,(req, res) => {
     let params = {
         TableName: 'JobInfo',
         KeyConditionExpression: " #user=:user ",
@@ -192,7 +192,7 @@ router.post('/seeker-down', (req, res) => {
 // ĐĂNG 1 CÔNG VIỆC MỚI
 router.post('/new-job/post-job',[
     body('pos').not().isEmpty().withMessage('Bạn chưa nhập vị trí')
-        .isString().withMessage('Dữ liệu bạn nhập phải là chữ cái'),
+        .matches("[a-zA-Z ]+").withMessage('Dữ liệu bạn nhập phải là chữ cái'),
     body('rank').not().isEmpty().withMessage('Bạn chưa chọn trình độ'),
     body('pro').not().isEmpty().withMessage('Bạn chưa chọn ngành'),
     body('workplace').not().isEmpty().withMessage('Bạn chưa chọn nơi làm việc'),
@@ -204,19 +204,17 @@ router.post('/new-job/post-job',[
             }
             return true
         }),
-    body('description'),
+    body('description').not().isEmpty().withMessage('Bạn chưa nhập mô tả công việc'),
     body('require').not().isEmpty().withMessage('Bạn chưa nhập yêu cầu công việc'),
-    body('tag').not().isEmpty().withMessage('Bạn chưa chọn thẻ')
-        .isArray({min: 2}).withMessage('Bạn phải chọn ít nhất 2 thẻ'),
     body('lang').not().isEmpty().withMessage('Bạn chưa chọn ngôn ngữ nộp hồ sơ'),
     body('contact').not().isEmpty().withMessage('Bạn chưa nhập tên liên hệ của bạn'),
     body('email').not().isEmpty().withMessage('Bạn chưa nhập email liên lạc')
         .isEmail().withMessage('Email của bạn không đúng định dạng abc@gmail.com'),
     body('name').not().isEmpty().withMessage('Bạn chưa nhập tên công ty'),
     body('address').not().isEmpty().withMessage('Bạn chưa nhập địa chỉ công ty'),
-    body('info').not().isEmpty().withMessage('Bạn chưa nhập thông tin công ty'),
+    body('info'),
     body('benefit').not().isEmpty().withMessage('Bạn chưa phúc lợi công ty'),
-    body('logo').not().isEmpty().withMessage('Bạn chưa tải logo công ty')
+    body('logo')
 ],(req, res, next) => {
     let result = validationResult(req)
     let errors = result.mapped()
@@ -247,7 +245,6 @@ router.post('/new-job/post-job',[
                 } },
             'description': { S: input.description },
             'requirement': { S: input.require },
-            'tag': { SS: input.tag },
             'date': { S: String(new Date()) }
         }
     }

@@ -9,8 +9,13 @@
 }
 
 .primary-info, .cv-file {
+  padding-left: 10px;
+  padding-top: 5px;
   margin-top: 10px;
+  border-radius: 0px 0px 1% 1%;
   overflow: hidden;
+  background-color: white;
+  height: 90%;
 }
 
 #main-content {

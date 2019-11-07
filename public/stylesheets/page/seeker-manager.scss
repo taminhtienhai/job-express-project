@@ -11,3 +11,11 @@
     color: black !important;
   }
 }
+
+tbody tr {
+  transition: .5s ease;
+  &:hover {
+    color: coral;
+    border-bottom: 1px solid #7BDBF8;
+  }
+}

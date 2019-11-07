@@ -81,5 +81,18 @@ module.exports = {
             }
             callback(err, data)
         })
+    },
+    getItemAsync: function (param) {
+        return new Promise((resolve,reject)=>{
+            dynamo.getItem(param, (err, data) => {
+                if (err){
+                    console.log("Unable to get One Item",err, err.stack)
+                    reject(err)
+                } else {
+                    console.log("Get Item Success")
+                    resolve(data)
+                }
+            })
+        })
     }
 }

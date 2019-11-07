@@ -35,3 +35,13 @@ label {
 small {
   float: left;
 }
+
+#first-lead, #second-lead {
+  & span {
+    padding: 6px;
+    border-radius: 50%;
+    background-color: #37A2F1;
+    color: white;
+  }
+  font-size: 20px;
+}
