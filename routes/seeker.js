@@ -54,9 +54,10 @@ router.get('/job-notification', (req, res) => {
                             if (!err)
                                 query.queryItem(params('JobInfo', it.S), (err, dt) => {
                                     let rs = dt.Items.filter(function (i) {
-                                        return i.applicants.filter(function (item) {
+                                        console.log(i)
+                                        return i.applicants?i.applicants.filter(function (item) {
                                             return item.applicant === req.user.user.S
-                                        }).length != 0 ? true : false
+                                        }).length != 0 ? true : false:""
                                     })
                                     if (rs.length === 0){
                                         let deleteParams = (tableName, key, expression)=>{
